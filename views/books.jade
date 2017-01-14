@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  form(method="post")
+        .form-group
+            label(for='link') link:
+            input#link.form-control(type='text', name="link")
+            label(for='title') title:
+            input#title.form-control(type='text', name="title")
+            label(for='author') author:
+            input#author.form-control(type='text', name="author")
+            label(for='published') published:
+            input#published.form-control(type='text', name="published")
+            label(for='description') description:
+            input#description.form-control(type='text', name="description")
+            label(for='imageUrl') imageUrl:
+            input#imageUrl.form-control(type='text', name="imageUrl")
+            label(for='price') price:
+            input#price.form-control(type='text', name="price" )
+            label(for='createDate') createDate:
+            input#createDate.form-control(type='text', name="createDate" value="#{date}")
+        button.btn.btn-primary(type='submit') Create
