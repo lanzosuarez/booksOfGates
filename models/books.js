@@ -12,7 +12,6 @@ var schema = new Schema({
     price: {type: String},
     createDate: {type: Date},
     updateDate: {type: Date},
-
 });
 
 module.exports = mongoose.model('Book', schema);
