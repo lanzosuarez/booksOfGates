@@ -10,6 +10,18 @@ function handleError(){
    }); 
 }
 
+router.get('/json-books',(req, res)=>{
+    Book.find((err, docs)=>{
+        if(err){
+            return res.status(500).json({
+                title: 'Error getting messages',
+                error: err
+            });
+        }
+        res.send(docs);
+    });
+});
+
 router.get('/:id', (req, res)=>{ //per book
     res.render('book');
 });
@@ -28,17 +40,4 @@ router.post('/delete/:id', (req, res)=>{
     res.send("delete");
 });
     
-router.get('/json-books',(req, res)=>{
-    Book.find()
-    .exec((err, docs)=>{
-        if(err){
-            return res.status(500).json({
-                title: 'Error getting messages',
-                error: err
-            });
-        }
-        res.send(docs);
-    });
-});
-
 module.exports = router;
