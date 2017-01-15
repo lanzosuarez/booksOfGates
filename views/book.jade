@@ -8,8 +8,8 @@ block content
 						span.title.is-3 Favorite Books
 						|           
 						span.title.is-3.has-text-muted &nbsp;|&nbsp;
-						|           
-						span.title.is-4.has-text-muted 2016
+						|   
+						span.title.is-4.has-text-muted= favYear
 		|   
 	.section.viewBook
 		.container
@@ -23,14 +23,14 @@ block content
 									// Front
 									ul.hardcover_front
 										li
-											img(src='http://s.cdpn.io/13060/book1.jpg', alt='',)#imgBook
+											img(src='#{book.imageUrl}', alt='',)#imgBook
 											span.ribbon.bestseller Nº1
 										li
 									// Pages
 									ul.page
 										li
 										li
-											a.btn(href='#') View More
+											a.btn(href='/books/#{book._id}') View More
 										li
 										li
 										li
@@ -43,26 +43,25 @@ block content
 										li
 				|         
 				.column.is-8.is-offset-1
-					.title.is-2 Item Title
+					.title.is-2= book.title
 					|           
-					p.title.is-3.has-text-muted $ 39.95
+					p.title.is-3.has-text-muted= book.price
 					|           
 					hr
 					|           
 					br
 					|           
-					p
-						| Suspendisse sodales metus justo, ullamcorper iaculis purus interdum in. Sed ultricies enim felis, in interdum urna malesuada a. Morbi id ligula vel leo elementum dignissim quis vel purus. Donec iaculis, est ac maximus vestibulum, sapien mi lacinia urna, at laoreet felis lectus nec urna. Fusce egestas, neque vitae blandit scelerisque, leo arcu pellentesque risus, et volutpat neque nunc id massa. Aenean dapibus leo vel purus malesuada, eu ultrices nulla consequat. Duis erat orci, lobortis sed dictum id, pretium a nibh. Mauris pharetra ligula consequat gravida ornare.
+					p= book.description
 					|           
 					br
 					|           
 					br
 					|           
 					p            
-						a.button.is-primary Edit Book
+						a.button.is-primary(href='/books/edit/#{book._id}') Edit Book
 						|             &nbsp; &nbsp; &nbsp;
 						|             
-						a.button.is-danger Delete
+						a.button.is-danger(href='/books/delete/#{book._id}') Delete
 					|           
 					br
 					|           
@@ -72,25 +71,28 @@ block content
 								td.has-text-right
 									strong Amazon Link
 								|                 
-								td 1234
+								td= book.link
 							|   
 							tr
 								td.has-text-right
 									strong Year Published
 								|                 
-								td jsmith
+								td= book.published
 							|               
 							tr
 								td.has-text-right
 									strong Date Created
-								|                 
-								td jsmith
+								|   
+								- var date = month+" "+book.createDate.getDate()+", "+book.createDate.getFullYear()          
+								td= date
 							|               
 							tr
 								td.has-text-right
 									strong Date Updated
-								|                 
-								td 3 days ago
+								|  
+								- var update = Math.ceil((Date.now()- book.createDate)/86400000)
+								- var day = update>1?'days':'day'               
+								td #{update} #{day} ago
 							|               
 							tr
 				
