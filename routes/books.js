@@ -10,7 +10,7 @@ function handleError(){
    }); 
 }
 
-router.get('/book', (req, res)=>{ //per book
+router.get('/:id', (req, res)=>{ //per book
     res.render('book');
 });
 
@@ -19,7 +19,7 @@ router.route('/new') //new
         res.render('new')
     });
 
-router.route('/edit') //edit
+router.route('/edit/:id') //edit
     .get((req, res)=>{
         res.render('edit')
 });
