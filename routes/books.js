@@ -12,7 +12,16 @@ function handleError(){
 
 router.route('/')
     .get((req, res)=>{
-        res.render('books');
+        Book.find()
+        .exec((err, docs)=>{
+            if(err){
+                return res.status(500).json({
+                    title: 'Error getting messages',
+                    error: err
+                });
+            }
+            res.send(docs);
+        });
     })
     .post((req, res)=>{
 
