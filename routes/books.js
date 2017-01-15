@@ -10,39 +10,34 @@ function handleError(){
    }); 
 }
 
-router.route('/json-books')
-    .get((req, res)=>{
-        Book.find()
-        .exec((err, docs)=>{
-            if(err){
-                return res.status(500).json({
-                    title: 'Error getting messages',
-                    error: err
-                });
-            }
-            res.send(docs);
-        });
-    })
-    .post((req, res)=>{
+router.get('/book', (req, res)=>{ //per book
+    res.render('book');
+});
 
-    let book = new Book({
-        link: req.body.link,
-        title: req.body.title,
-        author: req.body.author,
-        published: req.body.published,
-        description: req.body.description,
-        imageUrl: req.body.imageUrl,
-        price: req.body.price,
-        createDate: new Date()
+router.route('/new') //new
+    .get((req, res)=>{
+        res.render('new')
     });
-    book.save((err, book)=>{
+
+router.route('/edit') //edit
+    .get((req, res)=>{
+        res.render('edit')
+});
+
+router.post('/delete/:id', (req, res)=>{
+    res.send("delete");
+});
+    
+router.get('/json-books',(req, res)=>{
+    Book.find()
+    .exec((err, docs)=>{
         if(err){
-            return this.handleError();
-        }
-        res.status(200).json({
-            title: 'Message Saved!',
-            obj: book
+            return res.status(500).json({
+                title: 'Error getting messages',
+                error: err
             });
+        }
+        res.send(docs);
     });
 });
 
