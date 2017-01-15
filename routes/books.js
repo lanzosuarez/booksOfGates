@@ -10,7 +10,7 @@ function handleError(){
    }); 
 }
 
-router.route('/')
+router.route('/json-books')
     .get((req, res)=>{
         Book.find()
         .exec((err, docs)=>{
