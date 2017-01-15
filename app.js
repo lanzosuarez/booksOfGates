@@ -9,6 +9,7 @@ var express = require('express'),
 
 var index = require('./routes/index');
 var books = require('./routes/books');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -31,6 +32,7 @@ require('express-debug')(app, {});
 
 app.use('/', index);
 app.use('/books', books);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
