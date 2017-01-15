@@ -1,5 +1,138 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .section
+    .columns
+      .column.is-two-thirds.center
+        .content
+          h4(align="justify")
+            | "Never before have I felt so empowered to learn as I do today. When I was young, there were few options to learn on my own. My parents had a set of World Book Encyclopedias, which I read through in alphabetical order. But there were no online courses, video lectures, or podcasts to 
+            | introduce me to new ideas and thinkers as we have today. Still, reading books is my favorite way to learn about a new topic. I’ve been reading about a book a week on average since I was a kid. Even when my schedule is out of control, I carve out a lot of time for reading. If you’re 
+            | looking for a book to enjoy over the holidays, here are some of my favorites from this year. They cover an eclectic mix of topics—from tennis to tennis shoes, genomics to great leadership. They’re all very well written, and they all dropped me down a rabbit hole of unexpected 
+            | insights and pleasures."
+    
+
+
+  section.hero
+    .hero-body
+      p.title.is-2(align="center") Favorite Books
+      .component
+        ul.align
+          // Book 1
+          li
+            figure.book
+              // Front
+              ul.hardcover_front
+                li
+                  img(src='http://s.cdpn.io/13060/book1.jpg', alt='',)#imgBook
+                  span.ribbon.bestseller Nº1
+                li
+              // Pages
+              ul.page
+                li
+                li
+                  a.btn(href='#') View More
+                li
+                li
+                li
+              // Back
+              ul.hardcover_back
+                li
+                li
+              ul.book_spine
+                li
+                li
+              figcaption.content
+                .container.conBook
+                  h1 Responsive Web Design
+                  span By Ethan Marcotte
+                  p
+                    | From mobile browsers to netbooks and tablets, users are visiting your sites from an increasing array of devices and browsers. Are your designs ready?...
+          // Book 2
+          li
+            figure.book
+              // Front
+              ul.hardcover_front
+                li
+                  img(src='http://s.cdpn.io/13060/book2.jpg', alt='')#imgBook
+                  span.ribbon.new NEW
+                li
+              // Pages
+              ul.page
+                li
+                li
+                  a.btn(href='#') View More
+                li
+                li
+                li
+              // Back
+              ul.hardcover_back
+                li
+                li
+              ul.book_spine
+                li
+                li
+              figcaption.content
+                .container.conBook
+                  h1 Mobile First
+                  span By Luke Wroblewski
+                  p
+                    | Our industry’s long wait for the complete, strategic guide to mobile web design is finally over. Former Yahoo! design architect and co-creator of Bagcheck Luke Wroblewski knows more about mobile experience than the rest of us...
+          // Book 3
+          li
+            figure.book
+              // Front
+              ul.hardcover_front
+                li
+                  img(src='http://s.cdpn.io/13060/book3.jpg', alt='')#imgBook
+                li
+              // Pages
+              ul.page
+                li
+                li
+                  a.btn(href='#') View More
+                li
+                li
+                li
+              // Back
+              ul.hardcover_back
+                li
+                li
+              ul.book_spine
+                li
+                li
+              figcaption.content
+                .container.conBook
+                  h1 Adaptive Web Desgn
+                  span By Aaron Gustafson
+                  p
+                    | The web is an ever-changing medium whose scope, application, audience and platform continue to grow on a daily basis. If you’ve worked on the web for any amount of time, you’ve likely heard or even used the term “progressive enhancement.”...
+          // Book 4
+          li
+            figure.book
+              // Front
+              ul.hardcover_front
+                li
+                  img(src='http://s.cdpn.io/13060/book3.jpg', alt='')#imgBook
+                li
+              // Pages
+              ul.page
+                li
+                li
+                  a.btn(href='#') View More
+                li
+                li
+                li
+              // Back
+              ul.hardcover_back
+                li
+                li
+              ul.book_spine
+                li
+                li
+              figcaption.content
+                .container.conBook
+                  h1 Adaptive Web Desgn
+                  span By Aaron Gustafson
+                  p
+                    | The web is an ever-changing medium whose scope, application, audience and platform continue to grow on a daily basis. If you’ve worked on the web for any amount of time, you’ve likely heard or even used the term “progressive enhancement.”...

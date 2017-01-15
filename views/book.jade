@@ -1,0 +1,96 @@
+extends layout
+
+block content
+	.section.product-header
+		.container
+				.columns
+					.column
+						span.title.is-3 Favorite Books
+						|           
+						span.title.is-3.has-text-muted &nbsp;|&nbsp;
+						|           
+						span.title.is-4.has-text-muted 2016
+		|   
+	.section.viewBook
+		.container
+			.columns
+				.column.is-3
+					.component
+						ul.align
+							// Book 1
+							li
+								figure.book
+									// Front
+									ul.hardcover_front
+										li
+											img(src='http://s.cdpn.io/13060/book1.jpg', alt='',)#imgBook
+											span.ribbon.bestseller Nº1
+										li
+									// Pages
+									ul.page
+										li
+										li
+											a.btn(href='#') View More
+										li
+										li
+										li
+									// Back
+									ul.hardcover_back
+										li
+										li
+									ul.book_spine
+										li
+										li
+				|         
+				.column.is-8.is-offset-1
+					.title.is-2 Item Title
+					|           
+					p.title.is-3.has-text-muted $ 39.95
+					|           
+					hr
+					|           
+					br
+					|           
+					p
+						| Suspendisse sodales metus justo, ullamcorper iaculis purus interdum in. Sed ultricies enim felis, in interdum urna malesuada a. Morbi id ligula vel leo elementum dignissim quis vel purus. Donec iaculis, est ac maximus vestibulum, sapien mi lacinia urna, at laoreet felis lectus nec urna. Fusce egestas, neque vitae blandit scelerisque, leo arcu pellentesque risus, et volutpat neque nunc id massa. Aenean dapibus leo vel purus malesuada, eu ultrices nulla consequat. Duis erat orci, lobortis sed dictum id, pretium a nibh. Mauris pharetra ligula consequat gravida ornare.
+					|           
+					br
+					|           
+					br
+					|           
+					p            
+						a.button.is-primary Edit Book
+						|             &nbsp; &nbsp; &nbsp;
+						|             
+						a.button.is-danger Delete
+					|           
+					br
+					|           
+					table.table
+						tbody
+							tr
+								td.has-text-right
+									strong Amazon Link
+								|                 
+								td 1234
+							|   
+							tr
+								td.has-text-right
+									strong Year Published
+								|                 
+								td jsmith
+							|               
+							tr
+								td.has-text-right
+									strong Date Created
+								|                 
+								td jsmith
+							|               
+							tr
+								td.has-text-right
+									strong Date Updated
+								|                 
+								td 3 days ago
+							|               
+							tr
+				

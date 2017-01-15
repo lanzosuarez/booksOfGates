@@ -22,8 +22,7 @@ router.get('/json-books',(req, res)=>{
     });
 });
 
-
-router.get('/new',(req, res)=>{
+router.get('/new',(req, res)=>{ //new
         res.render('new')
 });
 

@@ -1,9 +1,49 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title The Books of Gates
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+    link(rel='stylesheet', type='text/css', href='/stylesheets/bulma.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
 
+  section.hero.is-light.is-large#gates
+    .hero-body
+      .container
+        figure.image#gatesLogo
+          img(src='/images/logo3.png' alt='Gates logo')
+  .tabs.is-centered.is-medium
+    ul
+      li.is-active
+        a('href'="/") Home
+      |     
+      li
+        a New
+      |     
+  
   body
-    block content
+  block content
+  
+  // Footer
+  //- .hero-foot
+  //-   section.hero.is-small.foot
+  //-     .hero-body
+  //-       .container.footContainer
+  //-         .columns
+  //-           .column.is-6(align="center")
+  //-             a.is-brand(href='#')
+  //-               figure.image#starLogo
+  //-                 img(src='./images/ss.png' alt='SS logo')
+  //-             p Starilight Studio Copyright 2002. All rights reserved.
+  //-           .column.is-6.footRight
+  //-             h2 MANILA PHILIPPINES
+  //-             h2 strlghtstdio@yahoo.com
+  //-             h2 09155318566 
+  //-             h2 6/F Regis Center, 327 Katipunan Avenue, Loyola Heights, Quezon City
+
+
+  // Scripts
+  script(ype='text/javascript', src='../js/jquery.min.js')
+  script(type='text/javascript',src='../js/script.js')
