@@ -12,7 +12,7 @@ function handleError(){
 
 router.route('/')
     .get((req, res)=>{
-        res.render('books', {date:date});
+        res.render('books');
     })
     .post((req, res)=>{
 
