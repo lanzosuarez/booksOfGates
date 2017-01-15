@@ -1,0 +1,49 @@
+extends layout
+
+block content
+	section
+		.hero-body
+			.container
+				.columns.viewBook
+					.column.is-
+						.container
+							.photo_submit-container
+								.photo_submit-container
+									label.photo_submit.js-photo_submit1
+										input.photo_submit-input.js-photo_submit-input(type='file', accept='image/*')
+										|             
+										span.photo_submit-plus
+										|             
+										span.photo_submit-uploadLabel Upload photo
+										|             
+										span.photo_submit-delete
+
+					.column.is-8        
+						.box
+							p.control
+								input.input(type='text', placeholder='Book Title')
+							|               
+							p.control
+								input.input(type='text', placeholder='Author')
+							|                
+							p.control
+								input.input(type='text', placeholder='Year Published')
+							| 
+							p.control
+								input.input(type='text', placeholder='Amazon Link')
+							| 
+							p.control
+								input.input(type='text', placeholder='Kindle Price')
+							|  
+							hr
+							p.control
+								textarea.textarea.is-hovered(placeholder='Book Description')
+							|               
+							hr
+							|               
+							p.control
+								button.button.is-primary Save 
+								|  &nbsp; &nbsp; &nbsp;
+								|                         
+								button.button.is-default Cancel
+

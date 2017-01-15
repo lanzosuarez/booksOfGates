@@ -22,14 +22,13 @@ router.get('/json-books',(req, res)=>{
     });
 });
 
+router.get('/new',(req, res)=>{ //new
+        res.render('new')
+});
+
 router.get('/:id', (req, res)=>{ //per book
     res.render('book');
 });
-
-router.route('/new') //new
-    .get((req, res)=>{
-        res.render('new')
-    });
 
 router.route('/edit/:id') //edit
     .get((req, res)=>{
