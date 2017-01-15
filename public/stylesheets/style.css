@@ -18,8 +18,8 @@ body {
 .tabs{
 	background-color: rgb(255, 255, 0);
 }
-.nav-item img {
-    max-height: 62px !important;
+.loginButton{
+	
 }
 * {
   margin: 0;

@@ -1,17 +1,18 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+var express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    fileUpload = require('express-fileupload');
 
 var index = require('./routes/index');
 var books = require('./routes/books');
 
 var app = express();
 
-var uri = process.env.MONGOLAB_URI;
+var uri = process.env.MONGOLAB_URI || 'mongodb://lanzosuarez:bobotngacla1234@ds055802.mlab.com:55802/gates-books'
 mongoose.connect(uri)
 
 // view engine setup
@@ -25,6 +26,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
+require('express-debug')(app, {});
 
 app.use('/', index);
 app.use('/books', books);
