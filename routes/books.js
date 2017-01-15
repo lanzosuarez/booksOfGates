@@ -12,7 +12,6 @@ function handleError(){
 
 router.route('/')
     .get((req, res)=>{
-        let date = new Date();
         res.render('books', {date:date});
     })
     .post((req, res)=>{
@@ -25,7 +24,7 @@ router.route('/')
         description: req.body.description,
         imageUrl: req.body.imageUrl,
         price: req.body.price,
-        createDate: req.body.createDate
+        createDate: new Date()
     });
     book.save((err, book)=>{
         if(err){
