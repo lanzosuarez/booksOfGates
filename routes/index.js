@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var Book = require('../models/books');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Book.find((err, docs)=>{
@@ -13,5 +15,7 @@ router.get('/', function(req, res, next) {
         res.render('index', { books: docs });
     });
 });
+
+//pwede ka na mag forech sa loob ng index.jade
 
 module.exports = router;
