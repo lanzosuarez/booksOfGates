@@ -18,6 +18,7 @@ $(document).ready(function () {
         console.log($('#bookImg'));
         return false;
 
+    });
 });
-});
+
 
