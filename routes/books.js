@@ -25,19 +25,13 @@ router.get('/json-books',(req, res)=>{
     });
 });
 
-router.get('/new',(req, res)=>{ //new
-        var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
-        res.render('new',{
-            token:token
-        })
-});
-
 
 router.get('/:id', (req, res)=>{ //per book
     var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
     Book.findById(req.params.id, (err, book)=>{
         if(err){
-            return this.handleError();
+            this.handleError();
+            return;
         }
         var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -61,6 +55,13 @@ router.use('/',(req, res, next)=>{
         next();
     })
 })
+
+router.get('/new',(req, res)=>{ //new
+        var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
+        res.render('new',{
+            token:token
+        })
+});
 
 router.post('/new', (req, res)=>{
     if (!req.files) {
@@ -113,17 +114,33 @@ router.get('/edit/:id',(req, res)=>{ //edit
     })
 });
 
-router.post('/edit/id',(req, res)=>{
-    // book.link= req.body.link;
-    // book.title= req.body.title;
-    // book.author= req.body.author;
-    // book.published= req.body.published;
-    // book.description= req.body.description;
-    // book.imageUrl= url;
-    // book.price= req.body.price;
+router.post('/edit/:id',(req, res)=>{
+    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
+    Book.findById(req.params.id, (err, book)=>{
+        if(err){
+            this.handleError();
+        }
+        book.link= req.body.link;
+        book.title= req.body.title;
+        book.author= req.body.author;
+        book.published= req.body.published;
+        book.description= req.body.description;
+        book.imageUrl= req.body.imageUrl;
+        book.price= req.body.price;
+        book.updateDate = Date.now();
+        book.save((err, book)=>{
+            if(err){
+                this.handleError();
+            }
+            res.render('edit',{
+                book:book,
+                token:token
+            });
+        })
+    })
 });
 
-router.post('/delete/:id', (req, res)=>{
+router.get('/delete/:id', (req, res)=>{
     Book.findById(req.params.id, (err, book)=>{
         if(err){
            this.handleError();
