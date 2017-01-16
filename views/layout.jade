@@ -18,11 +18,10 @@ html
               img(src='/images/logo3.png' alt='Gates logo')
         //a.button.loginButton Login
   .tabs.is-centered.is-medium
+   - var t = token
     ul(style="z-index:0")
-    - var t = token
       li.is-active
         a('href'="/") Home
-      
       if t     
         li
           a('href'="/books/new#{token}") New
