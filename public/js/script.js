@@ -7,34 +7,9 @@ $(function () {
       $menu.toggleClass('is-active');
     });
 
-    // $('#bookImg').change(function(){
-    //      console.log(($('#bookImg').val()));
-    //       if(!$('#bookImg').val() || ""){
-    //         window.alert("No photo was selected");
-    //         e.preventDefault();
-    //     }
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/books/new",
-    //     }).done(function (r) {
-    //         console.log(r);
-    //     });
-    // });
-
-    // var submitButton = $('#submitButton');
-    // submitButton.bind('click', function(e){ 
-    //     if(!$('#bookImg').val() || ""){
-    //         window.alert("No photo was selected");
-    //         e.preventDefault();
-    //     }
-    //     //  $.ajax({
-    //     //     type: "POST",
-    //     //     url: "/books/new",
-    //     // }).done(function (r) {
-    //     //     console.log(r);
-    //     // });
-    // });
-    
+    $('#bookImg').change(function(){
+        console.log($('#bookImg').val());
+    });
     
     $('#login').click(function(e){
         var email = $('#email').val();

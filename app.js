@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var books = require('./routes/books');
 var admin = require('./routes/admin');
 
+
 var app = express();
 
 var uri = process.env.MONGOLAB_URI || 'mongodb://lanzosuarez:bobotngacla1234@ds055802.mlab.com:55802/gates-books'
@@ -28,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
-require('express-debug')(app, {});
+
 
 app.use('/', index);
 app.use('/books', books);

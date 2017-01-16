@@ -58,4 +58,9 @@ router.post('/login', (req, res)=>{
     });
 });
 
+router.get('/logout', (req, res)=>{
+    localStorage.clear();
+    res.redirect('/');
+})
+
 module.exports = router;

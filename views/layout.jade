@@ -19,16 +19,22 @@ html
         //a.button.loginButton Login
   .tabs.is-centered.is-medium
     ul(style="z-index:0")
+    - var t = token
       li.is-active
         a('href'="/") Home
-      |     
-      li
-        a('href'="/books/new#{token}") New
-      |   
-      li
-        a('href'="/login") Login
-      |      
-  
+      
+      if t     
+        li
+          a('href'="/books/new#{token}") New
+        
+      if !t     
+        li
+          a('href'="/admin/login") Login
+        
+      if t
+        li
+          a('href'="/admin/logout") Logout
+            
   body
   block content
   
