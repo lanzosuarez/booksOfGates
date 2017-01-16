@@ -26,7 +26,7 @@ router.get('/json-books',(req, res)=>{
 });
 
 router.get('/new',(req, res)=>{ //new
-        var token = localStorage.getItem('token')?'?'+localStorage.getItem('token'):''
+        var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
         res.render('new',{
             token:token
         })
@@ -34,6 +34,7 @@ router.get('/new',(req, res)=>{ //new
 
 
 router.get('/:id', (req, res)=>{ //per book
+    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
     Book.findById(req.params.id, (err, book)=>{
         if(err){
             return this.handleError();
@@ -45,24 +46,23 @@ router.get('/:id', (req, res)=>{ //per book
         res.render('book',{
             book: book,
             favYear: book.published.match(/(\d{4})/)[0],
-            month: monthNames[book.createDate.getMonth()]
+            month: monthNames[book.createDate.getMonth()],
+            token: token
         })
     });
 });
 
+//// middleware
 router.use('/',(req, res, next)=>{
     jwt.verify(req.query.token, 'secret',(err, decoded)=>{
         if(err){
-            return res.send({
-                redirect:'/admin/login'
-            });
+                return res.redirect('/admin/login');
         }
         next();
     })
 })
 
 router.post('/new', (req, res)=>{
-
     if (!req.files) {
         res.send('No files were uploaded.');
         return;
@@ -99,8 +99,28 @@ router.post('/new', (req, res)=>{
     })
 });
 
+
 router.get('/edit/:id',(req, res)=>{ //edit
-        res.render('edit')
+    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
+    Book.findById(req.params.id, (err, book)=>{
+        if(err){
+            this.handleError();
+        }
+        res.render('edit',{
+            book:book,
+            token:token
+        });
+    })
+});
+
+router.post('/edit/id',(req, res)=>{
+    // book.link= req.body.link;
+    // book.title= req.body.title;
+    // book.author= req.body.author;
+    // book.published= req.body.published;
+    // book.description= req.body.description;
+    // book.imageUrl= url;
+    // book.price= req.body.price;
 });
 
 router.post('/delete/:id', (req, res)=>{

@@ -9,14 +9,16 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/bulma.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
 
-  section.hero.is-light.is-large#gates
-    .hero-body
-      .container
-        figure.image#gatesLogo
-          img(src='/images/logo3.png' alt='Gates logo')
+  section.hero1.is-light.is-large#gates
+    .hero-head
+      header.nav
+        .container
+          .nav-left
+            figure.image#gatesLogo
+              img(src='/images/logo3.png' alt='Gates logo')
         //a.button.loginButton Login
   .tabs.is-centered.is-medium
-    ul
+    ul(style="z-index:1")
       li.is-active
         a('href'="/") Home
       |     
@@ -51,3 +53,5 @@ html
   // Scripts
   script(ype='text/javascript', src='../js/jquery.min.js')
   script(type='text/javascript',src='../js/script.js')
+  script(type='text/javascript',src='../js/photosubmit.js')
+  

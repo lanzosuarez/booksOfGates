@@ -34,7 +34,6 @@ $(function () {
     //     //     console.log(r);
     //     // });
     // });
-
     
     
     $('#login').click(function(e){
@@ -68,5 +67,7 @@ $(function () {
                  }
             });
     });
+
+
 });
 

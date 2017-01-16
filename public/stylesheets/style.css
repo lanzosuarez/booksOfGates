@@ -3,26 +3,54 @@ body {
   background-color: white;
 }
 /*----------HEADER AND NAV--------------------*/
+.hero1 {
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    background-color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+}
+.nav{
+	min-height: 159px;
+	background-color: rgba(255, 255, 255, 0);
+}
 #head{
   background-color: white;
 }
 #gatesLogo{
 	position: absolute;
-	top: -240px;
+	/*top: -240px;*/
 	bottom: 0;
-	width: 23%;
+	width: 275px;
 }
 #gates{
 	background: url(../../images/gates1.jpg) no-repeat center center;
+	height: 474px;
+    background-size: cover;
 }
 .tabs{
 	background-color: rgb(255, 255, 0);
+}
+.tabs:not(:last-child) {
+     padding-bottom: 0px !important;
+	 margin-bottom: 0px !important;
 }
 * {
   margin: 0;
   padding: 0;
 }
-
+.is-white{
+	color:white;
+}
 ::before,
 ::after {
 	content: "";
@@ -700,7 +728,7 @@ figcaption p {
 	.align > li {
 		width: 100%;
 		min-height: 440px;
-		height: auto;
+		height: 537px;
 		padding: 0;
 		margin: 0 0 30px 0;
 	}
@@ -734,8 +762,30 @@ figcaption p {
   font-weight: bold;
   padding: 0 10px;
 }
-.cart-icon {
-  padding-top:10px;
+.table {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
+.table td, .table th {
+    border: none;
+    border-width: 0 0 1px;
+    padding: 8px 10px;
+    vertical-align: top;
+}
+.table tr:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+.editButton{
+	text-align: center;
+    position: relative;
+    top: -70px;
+}
+.is-bl{
+	color: #95A5A6!important;
+	font-weight: 500;
+}
+.is-tdsize{
+	width: 74%;
 }
 .product-header {
   background-color:#fafafa;
@@ -743,6 +793,7 @@ figcaption p {
 .viewBook{
   padding-bottom: 88px;
   padding-top: 10px;
+  background-color: rgba(255, 228, 196, 0);
 }
 /*----------------END---------------*/
 /*-------------BOOK VIEW------------*/
@@ -785,12 +836,12 @@ figcaption p {
           justify-content: center;
   width: 250px;
   height: 300px;
-  background: rgba(103, 103, 93, 0.14);
+  background: rgba(95, 92, 92, 0.65);
   border-radius: 8px;
 }
 .photo_submit:hover {
   cursor: pointer;
-  background: rgba(72, 174, 160, 0.27);
+  background: rgba(0, 0, 0, 0.65);
 }
 .photo_submit:nth-child(2),
 .photo_submit:nth-child(4) {
@@ -879,6 +930,28 @@ figcaption p {
   display: inline-block;
 }
 /*----------------END---------------*/
+/*-------------NEW BOOK-------------*/
+#newBody{
+	width: auto;
+	height: auto;
+	background: url(../../images/newbg.jpg) no-repeat center cadetblue;
+	background-size: cover;
+}
+.newBook {
+    padding-bottom: 88px;
+    padding-top: 45px;
+	background-color: rgba(4, 4, 4, 0);
+}
+.new-header {
+  	background-color:rgba(250, 250, 250, 0);
+}
+.boxColor{
+	background-color: rgba(0, 0, 0, 0.34);
+}
+.boxColor h4{
+	color:white;
+}
+/*--------------END-----------------*/
 /*-----------LOGIN------------------*/
 .loginCon{
 	top: -306px;
@@ -1013,3 +1086,45 @@ figcaption p {
    color: rgba(255,255,255,0.6);
 }
 /*------------END-------------------*/
+/*-----------MEDIA QUERIES----------*/
+@media screen and (max-width: 768px) and (min-width: 562px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 207px!important;
+	}
+	.align2 li {
+		width: 100%;
+	}
+	
+}
+@media screen and (max-width: 561px) and (min-width: 466px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 170px!important;
+	}
+}
+@media screen and (max-width: 465px) and (min-width: 411px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 152px!important;
+	}
+}
+@media screen and (max-width: 410px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 106px!important;
+	}
+}
+@media screen and (max-width: 605px) {
+	.align2{
+		height: 317px!important;
+	}
+}
+@media screen and (max-width: 768px) and (min-width: 606px) {
+	.editButton {
+		position: absolute;
+		top: -269px;
+		right: 166px;
+	}
+}
+/*---------------END----------------*/
