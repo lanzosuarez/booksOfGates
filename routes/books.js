@@ -25,10 +25,12 @@ router.get('/json-books',(req, res)=>{
 });
 
 router.get('/new',(req, res)=>{ //new
-        var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
-        res.render('new',{
-            token:token
-        })
+    var imageUrl = '/images/bookcover.jpg'
+    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
+    res.render('new',{
+        token:token,
+        imageUrl: imageUrl
+    })
 });
 
 router.get('/:id', (req, res)=>{ //per book
@@ -66,9 +68,8 @@ router.use('/',(req, res, next)=>{
 });
 
 router.post('/new',  (req, res)=>{
-    var chance = new Chance()
-    chance.zip();
-    var imageUrl = 'uploads/' + chance +'.jpg';
+ 
+    var imageUrl = '/images/bookcover.jpg'
     var book = new Book({
         link: req.body.link,
         title: req.body.title,
