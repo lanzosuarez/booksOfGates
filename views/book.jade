@@ -43,6 +43,8 @@ block content
 											li
 							.container
 								.column.editButton
+								-var t = token
+								if(t)
 									a.button.is-primary#edit(href='/books/edit/#{book._id}#{token}') Edit Book
 									a.button.is-danger#delete(href='/books/delete/#{book._id}#{token}') Delete
 							|           	
