@@ -120,10 +120,7 @@ router.post('/edit/:id',(req, res)=>{
             if(err){
                 this.handleError();
             }
-            res.render('edit',{
-                book:book,
-                token:token
-            });
+            res.redirect('/');
         })
     })
 });
