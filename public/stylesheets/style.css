@@ -3,17 +3,39 @@ body {
   background-color: white;
 }
 /*----------HEADER AND NAV--------------------*/
+.hero1 {
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    background-color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+}
+.nav{
+	min-height: 159px;
+	background-color: rgba(255, 255, 255, 0);
+}
 #head{
   background-color: white;
 }
 #gatesLogo{
 	position: absolute;
-	top: -240px;
+	/*top: -240px;*/
 	bottom: 0;
-	width: 23%;
+	width: 275px;
 }
 #gates{
 	background: url(../../images/gates1.jpg) no-repeat center center;
+	height: 474px;
+    background-size: cover;
 }
 .tabs{
 	background-color: rgb(255, 255, 0);
@@ -706,7 +728,7 @@ figcaption p {
 	.align > li {
 		width: 100%;
 		min-height: 440px;
-		height: auto;
+		height: 537px;
 		padding: 0;
 		margin: 0 0 30px 0;
 	}
@@ -1064,3 +1086,45 @@ figcaption p {
    color: rgba(255,255,255,0.6);
 }
 /*------------END-------------------*/
+/*-----------MEDIA QUERIES----------*/
+@media screen and (max-width: 768px) and (min-width: 562px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 207px!important;
+	}
+	.align2 li {
+		width: 100%;
+	}
+	
+}
+@media screen and (max-width: 561px) and (min-width: 466px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 170px!important;
+	}
+}
+@media screen and (max-width: 465px) and (min-width: 411px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 152px!important;
+	}
+}
+@media screen and (max-width: 410px) {
+	#gatesLogo {
+		top: 0!important;
+		width: 106px!important;
+	}
+}
+@media screen and (max-width: 605px) {
+	.align2{
+		height: 317px!important;
+	}
+}
+@media screen and (max-width: 768px) and (min-width: 606px) {
+	.editButton {
+		position: absolute;
+		top: -269px;
+		right: 166px;
+	}
+}
+/*---------------END----------------*/
