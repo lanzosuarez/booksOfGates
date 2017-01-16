@@ -1078,12 +1078,16 @@ figcaption p {
 }
 
 ::-webkit-input-placeholder{
-   color: rgba(255,255,255,0.6);
+   color: rgb(162, 162, 162);
+}
+input[]::-webkit-input-placeholder {
+  color: rgb(162, 162, 162);
 }
 
 ::-moz-input-placeholder{
-   color: rgba(255,255,255,0.6);
+   color: rgb(162, 162, 162);
 }
+
 /*------------END-------------------*/
 /*-----------MEDIA QUERIES----------*/
 @media screen and (max-width: 768px) and (min-width: 562px) {
