@@ -3,7 +3,7 @@ extends layout
 block content
 	section
 		.hero-body
-			form#myForm(method='post' enctype='multipart/form-data')
+			form#myForm(method='post' enctype='multipart/form-data' action='/books/new#{token}')
 				.container
 					.columns.viewBook
 						.column.is-
@@ -21,7 +21,6 @@ block content
 
 						.column.is-8        
 							.box
-								input.input#imageUrl(type='hidden', name='imageUrl')
 								p.control
 									input.input(type='text', placeholder='Book Title' name='title')
 								|               
@@ -44,7 +43,7 @@ block content
 								hr
 								|               
 								p.control
-									button.button.is-primary(type='submit') Save 
+									button.button.is-primary#submitButton Button Save 
 									|  &nbsp; &nbsp; &nbsp;
 									|                         
 									button.button.is-default Cancel

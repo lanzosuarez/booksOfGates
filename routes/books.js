@@ -1,10 +1,12 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    Chance = require('chance'),
+    LocalStorage = require('node-localstorage').LocalStorage,
+    localStorage = new LocalStorage('./scratch');
 
 
 var Book = require('../models/books');
 
-var fileCounter = 1;
 
 function handleError(){
    res.status(500).json({
@@ -12,6 +14,7 @@ function handleError(){
        error: err
    }); 
 }
+
 
 router.get('/json-books',(req, res)=>{
     Book.find((err, docs)=>{
@@ -23,25 +26,11 @@ router.get('/json-books',(req, res)=>{
 });
 
 router.get('/new',(req, res)=>{ //new
-        res.render('new')
+        var token = localStorage.getItem('token')?'?'+localStorage.getItem('token'):''
+        res.render('new',{
+            token:token
+        })
 });
-router.post('/new', (req, res)=>{
-    if (!req.files) {
-        res.send('No files were uploaded.');
-        return;
-    }
-    var image = req.files.myImage;
-    console.log(image);
-    // var imageUrl = 'public/uploads/bookImage'+fileCounter+'.jpg';
-    // image.mv(imageUrl,(err)=>{
-    //     if (err) {
-    //         this.handleError();
-    //     }
-
-    //     fileCounter++; 
-    // });  
-});
-
 
 
 router.get('/:id', (req, res)=>{ //per book
@@ -61,8 +50,56 @@ router.get('/:id', (req, res)=>{ //per book
     });
 });
 
-router.route('/edit/:id') //edit
-    .get((req, res)=>{
+router.use('/',(req, res, next)=>{
+    jwt.verify(req.query.token, 'secret',(err, decoded)=>{
+        if(err){
+            return res.send({
+                redirect:'/admin/login'
+            });
+        }
+        next();
+    })
+})
+
+router.post('/new', (req, res)=>{
+
+    if (!req.files) {
+        res.send('No files were uploaded.');
+        return;
+    }
+    var image = req.files.myImage;
+    var imgName = new Chance().zip()
+    var imageUrl = 'public/uploads/bookImage'+imgName+'.jpg';
+    var url = '/uploads/bookImage'+imgName+'.jpg';
+    image.mv(imageUrl,(err)=>{
+        if (err) {
+            this.handleError();
+        }
+        fileCounter++;      
+    }); 
+    var book = new Book({
+        link: req.body.link,
+        title: req.body.title,
+        author: req.body.author,
+        published: req.body.published,
+        description: req.body.description,
+        imageUrl: url,
+        price: req.body.price,
+        createDate: Date.now()
+    });
+
+    book.save((err, book)=>{
+        if(err){
+            this.handleError();
+        }
+        res.status(201).json({
+            title: 'Book is saved',
+            book: book
+        })
+    })
+});
+
+router.get('/edit/:id',(req, res)=>{ //edit
         res.render('edit')
 });
 
