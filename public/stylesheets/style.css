@@ -1133,3 +1133,23 @@ figcaption p {
 	}
 }
 /*---------------END----------------*/
+/*--------------FOOTER--------------*/
+.foot{
+	background-color: black;
+    border-top: 19px solid yellow;
+}
+.is-margin{
+	margin: auto;
+}
+.is-margin h3 {
+	font-size: x-large;
+    text-transform: capitalize;
+    font-weight: 800;
+	color: #adadad;
+}
+.is-margin h5{
+	letter-spacing: 3px;
+    line-height: 27px;
+	color: rgb(239, 239, 239);
+}
+/*---------------END----------------*/
