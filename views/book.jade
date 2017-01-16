@@ -16,8 +16,8 @@ block content
 			.container
 				.columns
 					.column.is-3
-						.component
-							ul.align.align2
+						.container.marginb
+							ul.align2
 								// Book 1
 								li
 									figure.book
@@ -25,13 +25,12 @@ block content
 										ul.hardcover_front
 											li
 												img(src='#{book.imageUrl}', alt='',)#imgBook
-												span.ribbon.bestseller Nº1
+												span.ribbon.bestseller N�1
 											li
 										// Pages
 										ul.page
 											li
 											li
-												a.btn(href='/books/#{book._id}') View More
 											li
 											li
 											li
@@ -42,13 +41,11 @@ block content
 										ul.book_spine
 											li
 											li
-						.container
-							.column.editButton
-								a.button.is-primary#edit(href='/books/edit/#{book._id}#{token}') Edit Book
-								|             &nbsp; &nbsp; &nbsp;
-								|             
-								a.button.is-danger#delete(href='/books/delete/#{book._id}#{token}') Delete
-						|           	
+							.container
+								.column.editButton
+									a.button.is-primary#edit(href='/books/edit/#{book._id}#{token}') Edit Book
+									a.button.is-danger#delete(href='/books/delete/#{book._id}#{token}') Delete
+							|           	
 					|         
 					.column.is-8.is-offset-1
 						.title.is-2.is-white= book.title
