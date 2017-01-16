@@ -3,7 +3,7 @@ extends layout
 block content
 	section#newBody
 		.hero-body.content
-			form#myForm(method='post' enctype='multipart/form-data' action="/books/edit/#{book._id}#{token}")
+			form#myForm(method='post' enctype='multipart/form-data')
 				.container
 					.section.new-header
 						.container
@@ -33,7 +33,7 @@ block content
 
 								.column.is-8
 									.box.content.boxColor
-										input.input#imageUrl(type='hidden', name='imageUrl')
+										input.input#imageUrl(type='hidden', name='imageUrl' value="#{book.imageUrl}")
 										h4.label Name:
 										p.control
 											input.input(type='text', placeholder='Book Title' name='title' value='#{book.title}')
@@ -57,7 +57,7 @@ block content
 										hr
 										h4.label Book Description:  
 										p.control
-											textarea.textarea.is-hovered(placeholder='Book Description' name='description' value='#{book.description}')
+											textarea.textarea.is-hovered(placeholder='Book Description' name='description' value='')= book.description
 										|               
 										hr
 										|               
