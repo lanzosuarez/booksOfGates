@@ -65,29 +65,17 @@ router.use('/',(req, res, next)=>{
     })
 });
 
-router.post('/new', (req, res)=>{
-  
-    if (!req.files) {
-        res.send('No files were uploaded.');
-        return;
-    }
-    var image = req.files.myImage;
-    var imgName = new Chance().zip()
-    var imageUrl = 'public/uploads/bookImage'+imgName+'.jpg';
-    var url = '/uploads/bookImage'+imgName+'.jpg';
-    image.mv(imageUrl,(err)=>{
-        if (err) {
-            this.handleError();
-        }
-        fileCounter++;      
-    }); 
+router.post('/new',  (req, res)=>{
+    var chance = new Chance()
+    chance.zip();
+    var imageUrl = 'uploads/' + chance +'.jpg';
     var book = new Book({
         link: req.body.link,
         title: req.body.title,
         author: req.body.author,
         published: req.body.published,
         description: req.body.description,
-        imageUrl: url,
+        imageUrl: imageUrl,
         price: req.body.price,
         createDate: Date.now()
     });
@@ -96,12 +84,9 @@ router.post('/new', (req, res)=>{
         if(err){
             this.handleError();
         }
-        res.status(201).json({
-            title: 'Book is saved',
-            book: book
-        })
+        res.redirect('/');
     })
-});
+})
 
 
 router.get('/edit/:id',(req, res)=>{ //edit
