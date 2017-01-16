@@ -740,8 +740,30 @@ figcaption p {
   font-weight: bold;
   padding: 0 10px;
 }
-.cart-icon {
-  padding-top:10px;
+.table {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
+.table td, .table th {
+    border: none;
+    border-width: 0 0 1px;
+    padding: 8px 10px;
+    vertical-align: top;
+}
+.table tr:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+.editButton{
+	text-align: center;
+    position: relative;
+    top: -70px;
+}
+.is-bl{
+	color: #95A5A6!important;
+	font-weight: 500;
+}
+.is-tdsize{
+	width: 74%;
 }
 .product-header {
   background-color:#fafafa;
@@ -749,6 +771,7 @@ figcaption p {
 .viewBook{
   padding-bottom: 88px;
   padding-top: 10px;
+  background-color: rgba(255, 228, 196, 0);
 }
 /*----------------END---------------*/
 /*-------------BOOK VIEW------------*/
