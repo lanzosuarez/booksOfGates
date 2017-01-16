@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 var schema = new Schema({
-
     link:{type: String},
     title: {type: String},
     author: {type: String},
@@ -13,5 +11,4 @@ var schema = new Schema({
     createDate: {type: Date},
     updateDate: {type: Date},
 });
-
 module.exports = mongoose.model('Book', schema);

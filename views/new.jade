@@ -1,9 +1,11 @@
 extends layout
 
 block content
+
 	section#newBody
 		.hero-body.content
-			form#myForm(method='post' enctype='multipart/form-data')
+			form#myForm(method='post' enctype='multipart/form-data' action='/books/new#{token}')
+
 				.container
 					.section.new-header
 						.container
@@ -30,7 +32,6 @@ block content
 													span.photo_submit-uploadLabel Upload photo
 													|             
 													span.photo_submit-delete
-
 								.column.is-8
 									.box.content.boxColor
 										input.input#imageUrl(type='hidden', name='imageUrl')
@@ -62,7 +63,8 @@ block content
 										hr
 										|               
 										p.control
-											button.button.is-primary(type='submit') Save 
+											button.button.is-primary#submitButton(type='submit') Save 
 											|  &nbsp; &nbsp; &nbsp;
 											|                         
 											button.button.is-default Cancel
+

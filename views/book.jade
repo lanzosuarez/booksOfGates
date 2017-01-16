@@ -44,10 +44,10 @@ block content
 											li
 						.container
 							.column.editButton
-								a.button.is-primary(href='/books/edit/#{book._id}') Edit Book
+								a.button.is-primary#edit(href='/books/edit/#{book._id}#{token}') Edit Book
 								|             &nbsp; &nbsp; &nbsp;
 								|             
-								a.button.is-danger(href='/books/delete/#{book._id}') Delete
+								a.button.is-danger#delete(href='/books/delete/#{book._id}#{token}') Delete
 						|           	
 					|         
 					.column.is-8.is-offset-1

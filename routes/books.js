@@ -1,10 +1,12 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    Chance = require('chance'),
+    LocalStorage = require('node-localstorage').LocalStorage,
+    localStorage = new LocalStorage('./scratch');
 
 
 var Book = require('../models/books');
 
-var fileCounter = 1;
 
 function handleError(){
    res.status(500).json({
@@ -12,6 +14,7 @@ function handleError(){
        error: err
    }); 
 }
+
 
 router.get('/json-books',(req, res)=>{
     Book.find((err, docs)=>{
@@ -23,28 +26,15 @@ router.get('/json-books',(req, res)=>{
 });
 
 router.get('/new',(req, res)=>{ //new
-        res.render('new')
+        var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
+        res.render('new',{
+            token:token
+        })
 });
-router.post('/new', (req, res)=>{
-    if (!req.files) {
-        res.send('No files were uploaded.');
-        return;
-    }
-    var image = req.files.myImage;
-    console.log(image);
-    // var imageUrl = 'public/uploads/bookImage'+fileCounter+'.jpg';
-    // image.mv(imageUrl,(err)=>{
-    //     if (err) {
-    //         this.handleError();
-    //     }
-
-    //     fileCounter++; 
-    // });  
-});
-
 
 
 router.get('/:id', (req, res)=>{ //per book
+    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
     Book.findById(req.params.id, (err, book)=>{
         if(err){
             return this.handleError();
@@ -56,14 +46,81 @@ router.get('/:id', (req, res)=>{ //per book
         res.render('book',{
             book: book,
             favYear: book.published.match(/(\d{4})/)[0],
-            month: monthNames[book.createDate.getMonth()]
+            month: monthNames[book.createDate.getMonth()],
+            token: token
         })
     });
 });
 
-router.route('/edit/:id') //edit
-    .get((req, res)=>{
-        res.render('edit')
+//// middleware
+router.use('/',(req, res, next)=>{
+    jwt.verify(req.query.token, 'secret',(err, decoded)=>{
+        if(err){
+                return res.redirect('/admin/login');
+        }
+        next();
+    })
+})
+
+router.post('/new', (req, res)=>{
+    if (!req.files) {
+        res.send('No files were uploaded.');
+        return;
+    }
+    var image = req.files.myImage;
+    var imgName = new Chance().zip()
+    var imageUrl = 'public/uploads/bookImage'+imgName+'.jpg';
+    var url = '/uploads/bookImage'+imgName+'.jpg';
+    image.mv(imageUrl,(err)=>{
+        if (err) {
+            this.handleError();
+        }
+        fileCounter++;      
+    }); 
+    var book = new Book({
+        link: req.body.link,
+        title: req.body.title,
+        author: req.body.author,
+        published: req.body.published,
+        description: req.body.description,
+        imageUrl: url,
+        price: req.body.price,
+        createDate: Date.now()
+    });
+
+    book.save((err, book)=>{
+        if(err){
+            this.handleError();
+        }
+        res.status(201).json({
+            title: 'Book is saved',
+            book: book
+        })
+    })
+});
+
+
+router.get('/edit/:id',(req, res)=>{ //edit
+    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
+    Book.findById(req.params.id, (err, book)=>{
+        if(err){
+            this.handleError();
+        }
+        res.render('edit',{
+            book:book,
+            token:token
+        });
+    })
+});
+
+router.post('/edit/id',(req, res)=>{
+    // book.link= req.body.link;
+    // book.title= req.body.title;
+    // book.author= req.body.author;
+    // book.published= req.body.published;
+    // book.description= req.body.description;
+    // book.imageUrl= url;
+    // book.price= req.body.price;
 });
 
 router.post('/delete/:id', (req, res)=>{
