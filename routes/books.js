@@ -66,41 +66,41 @@ router.use('/',(req, res, next)=>{
 });
 
 router.post('/new', (req, res)=>{
-    console.log(req.files);
-    // if (!req.files) {
-    //     res.send('No files were uploaded.');
-    //     return;
-    // }
-    // var image = req.files.myImage;
-    // var imgName = new Chance().zip()
-    // var imageUrl = 'public/uploads/bookImage'+imgName+'.jpg';
-    // var url = '/uploads/bookImage'+imgName+'.jpg';
-    // image.mv(imageUrl,(err)=>{
-    //     if (err) {
-    //         this.handleError();
-    //     }
-    //     fileCounter++;      
-    // }); 
-    // var book = new Book({
-    //     link: req.body.link,
-    //     title: req.body.title,
-    //     author: req.body.author,
-    //     published: req.body.published,
-    //     description: req.body.description,
-    //     imageUrl: url,
-    //     price: req.body.price,
-    //     createDate: Date.now()
-    // });
+  
+    if (!req.files) {
+        res.send('No files were uploaded.');
+        return;
+    }
+    var image = req.files.myImage;
+    var imgName = new Chance().zip()
+    var imageUrl = 'public/uploads/bookImage'+imgName+'.jpg';
+    var url = '/uploads/bookImage'+imgName+'.jpg';
+    image.mv(imageUrl,(err)=>{
+        if (err) {
+            this.handleError();
+        }
+        fileCounter++;      
+    }); 
+    var book = new Book({
+        link: req.body.link,
+        title: req.body.title,
+        author: req.body.author,
+        published: req.body.published,
+        description: req.body.description,
+        imageUrl: url,
+        price: req.body.price,
+        createDate: Date.now()
+    });
 
-    // book.save((err, book)=>{
-    //     if(err){
-    //         this.handleError();
-    //     }
-    //     res.status(201).json({
-    //         title: 'Book is saved',
-    //         book: book
-    //     })
-    // })
+    book.save((err, book)=>{
+        if(err){
+            this.handleError();
+        }
+        res.status(201).json({
+            title: 'Book is saved',
+            book: book
+        })
+    })
 });
 
 
