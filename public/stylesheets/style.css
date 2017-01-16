@@ -85,6 +85,13 @@ body {
     line-height: 23px;
 }
 /*----------BOOKS CSS----------------*/
+.marginb{
+	margin: 72px;
+}
+.editButton a{
+	width: 98px;
+    margin: 4px;
+}
 #imgBook{
   width:100% !important;
   height:100% !important;
@@ -778,7 +785,7 @@ figcaption p {
 .editButton{
 	text-align: center;
     position: relative;
-    top: -70px;
+	margin-top: 34px;
 }
 .is-bl{
 	color: #95A5A6!important;
@@ -953,23 +960,15 @@ figcaption p {
 }
 /*--------------END-----------------*/
 /*-----------LOGIN------------------*/
-.loginCon{
-	top: -306px;
-    z-index: 1;
-	overflow: hidden;
+.boxColor h1{
+	color:white;
+	text-align: center;
 }
 .loginBody{
-	position: fixed;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
 	width: auto;
 	height: auto;
-	background: url(../../images/bg.jpg) no-repeat center cadetblue;
+	background: url(../../images/newbg.jpg) no-repeat center cadetblue;
     background-size: cover;
-	-webkit-filter: blur(5px);
-	z-index: 0;
 }
 
 .grad{
@@ -1120,11 +1119,17 @@ figcaption p {
 		height: 317px!important;
 	}
 }
+@media screen and (max-width: 605px) {
+	.editButton {
+		margin-top: 0px;
+	}
+}
 @media screen and (max-width: 768px) and (min-width: 606px) {
 	.editButton {
 		position: absolute;
-		top: -269px;
-		right: 166px;
+		float: right;
+		right: 55px;
+		top: -172px;
 	}
 }
 /*---------------END----------------*/
