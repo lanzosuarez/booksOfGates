@@ -9,7 +9,7 @@ var express = require('express'),
 	passport = require('passport'),
   session = require('express-session'),
   LocalStrategy = require('passport-local').Strategy,
-  store = require('./session-store')
+  store = require('./session-store');
 
 var index = require('./routes/index'),
 	  books = require('./routes/books'),

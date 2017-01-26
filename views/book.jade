@@ -42,9 +42,8 @@ block content
 											li
 											li
 							.container
-							
-								.column.editButton
 								if u 
+								.column.editButton
 									a.button.is-primary#edit(href='/books/edit/#{book._id}') Edit Book
 									a.button.is-danger#delete(href='/books/delete/#{book._id}') Delete
 							|           	

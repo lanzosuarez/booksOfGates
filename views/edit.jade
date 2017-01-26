@@ -3,7 +3,7 @@ extends layout
 block content
 	section#newBody
 		.hero-body.content
-			form#myForm(method='post' enctype='multipart/form-data')
+			form#myForm(enctype='multipart/form-data')
 				.container
 					.section.new-header
 						.container
@@ -36,33 +36,33 @@ block content
 										input.input#imageUrl(type='hidden', name='imageUrl' value="#{book.imageUrl}")
 										h4.label Name:
 										p.control
-											input.input(type='text', placeholder='Book Title' name='title' value='#{book.title}')
+											input.input#title(type='text', placeholder='Book Title' name='title' value='#{book.title}')
 										| 
 										h4.label Author:              
 										p.control
-											input.input(type='text', placeholder='Author' name='author' value='#{book.author}')
+											input.input#author(type='text', placeholder='Author' name='author' value='#{book.author}')
 										|   
 										h4.label Year Published:                 
 										p.control
-											input.input(type='text', placeholder='Year Published' name='published' value='#{book.published}')
+											input.input#published(type='text', placeholder='Year Published' name='published' value='#{book.published}')
 										| 
 										h4.label Amazon Link:  
 										p.control
-											input.input(type='text', placeholder='Amazon Link' name='link' value='#{book.link}')
+											input.input#link(type='text', placeholder='Amazon Link' name='link' value='#{book.link}')
 										| 
 										h4.label Kindle Price:  
 										p.control
-											input.input(type='text', placeholder='Kindle Price' name='price' value='#{book.price}')
+											input.input#price(type='text', placeholder='Kindle Price' name='price' value='#{book.price}')
 										|  
 										hr
 										h4.label Book Description:  
 										p.control
-											textarea.textarea.is-hovered(placeholder='Book Description' name='description' value='')= book.description
+											textarea.textarea.is-hovered#description(placeholder='Book Description' name='description' value='')= book.description
 										|               
 										hr
 										|               
 										p.control
-											button.button.is-primary(type='submit') Save 
+											button.button.is-primary#editButton Save 
 											|  &nbsp; &nbsp; &nbsp;
 											|                         
 											button.button.is-default Cancel
