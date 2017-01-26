@@ -18,21 +18,18 @@ html
               img(src='/images/logo3.png' alt='Gates logo')
         //a.button.loginButton Login
   .tabs.is-centered.is-medium
-   - var t = token
     ul(style="z-index:0")
-      li.is-active
+        li.is-active
         a('href'="/") Home
-      if t     
-        li
-          a('href'="/books/new#{token}") New
-        
-      if !t     
-        li
-          a('href'="/admin/login") Login
-        
-      if t
-        li
-          a('href'="/admin/logout") Logout
+        if u
+          li
+          a('href'="/books/new") New
+        if !u      
+          li
+            a('href'="/admin/login") Login
+        if u
+          li
+            a('href'="/admin/logout") Logout
             
   body
   block content
@@ -54,7 +51,6 @@ html
 
 
   // Scripts
-  script(ype='text/javascript', src='../js/jquery.min.js')
-  script(type='text/javascript',src='../js/script.js')
-  script(type='text/javascript',src='../js/photosubmit.js')
-  
+  script(ype='text/javascript', src='/js/jquery.min.js')
+  script(type='text/javascript',src='/js/photosubmit.js')
+  script(type='text/javascript',src='/js/script.js')

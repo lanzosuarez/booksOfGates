@@ -25,40 +25,41 @@ block content
 										.photo_submit-container
 											.photo_submit-container
 												label.photo_submit.js-photo_submit1
-													input.photo_submit-input.js-photo_submit-input#bookImg(type='file', accept='image/*', name='myImage')
+													input.photo_submit-input.js-photo_submit-input#bookImg(type='file' name='bookImage')
 													|             
 													span.photo_submit-plus
 													|             
 													span.photo_submit-uploadLabel Upload photo
 													|             
 													span.photo_submit-delete
+												
 								.column.is-8
 									.box.content.boxColor
-										input.input#imageUrl(type='hidden', name='imageUrl' value="#{imageUrl}")
+										input.input#imageUrl(type='hidden', name='imageUrl')
 										h4.label Name:
 										p.control
-											input.input(type='text', placeholder='Book Title' name='title' required)
+											input.input(type='text', placeholder='Book Title' name='title' )
 										| 
 										h4.label Author:              
 										p.control
-											input.input(type='text', placeholder='Author' name='author' required)
+											input.input(type='text', placeholder='Author' name='author' )
 										|   
 										h4.label Year Published:                 
 										p.control
-											input.input(type='text', placeholder='Year Published ex: January 1, 2017' name='published' required)
+											input.input(type='text', placeholder='Year Published ex: January 1, 2017' name='published' )
 										| 
 										h4.label Amazon Link:  
 										p.control
-											input.input(type='text', placeholder='Amazon Link' name='link' required)
+											input.input(type='text', placeholder='Amazon Link' name='link' )
 										| 
 										h4.label Kindle Price:  
 										p.control
-											input.input(type='text', placeholder='Kindle Price' name='price' required)
+											input.input(type='text', placeholder='Kindle Price' name='price' )
 										|  
 										hr
 										h4.label Book Description:  
 										p.control
-											textarea.textarea.is-hovered(placeholder='Book Description' name='description' required)
+											textarea.textarea.is-hovered(placeholder='Book Description' name='description' )
 										|               
 										hr
 										|               

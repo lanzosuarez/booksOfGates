@@ -1,16 +1,21 @@
 var express = require('express'),
-    path = require('path'),
-    favicon = require('serve-favicon'),
-    logger = require('morgan'),
-    cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    fileUpload = require('express-fileupload');
+	path = require('path'),
+	favicon = require('serve-favicon'),
+	logger = require('morgan'),
+	cookieParser = require('cookie-parser'),
+	bodyParser = require('body-parser'),
+	mongoose = require('mongoose'),
+	fileUpload = require('express-fileupload'),
+	passport = require('passport'),
+  session = require('express-session'),
+  LocalStrategy = require('passport-local').Strategy,
+  store = require('./session-store')
 
-var index = require('./routes/index');
-var books = require('./routes/books');
-var admin = require('./routes/admin');
+var index = require('./routes/index'),
+	  books = require('./routes/books'),
+	  admin = require('./routes/admin');
 
+var User = require('./models/user');
 
 var app = express();
 
@@ -25,11 +30,32 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
+ 
+require('./session-store');
+app.use(session({
+  secret: 'This is a secret',
+  cookie: {
+    maxAge: 1000 * 60 * 60// 1 week 
+  },
+  store: store.s,
+  resave: true,
+  saveUninitialized: true
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+require('./passport-init');
 
+
+app.use((req, res, next)=>{
+  if(req.user){
+    res.locals.u = req.user.username;
+  }
+  next();
+});
 
 app.use('/', index);
 app.use('/books', books);

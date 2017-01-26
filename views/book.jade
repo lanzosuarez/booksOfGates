@@ -42,13 +42,13 @@ block content
 											li
 											li
 							.container
-							-var t = token
-							if(t)
+							
 								.column.editButton
-									a.button.is-primary#edit(href='/books/edit/#{book._id}#{token}') Edit Book
-									a.button.is-danger#delete(href='/books/delete/#{book._id}#{token}') Delete
+								if u 
+									a.button.is-primary#edit(href='/books/edit/#{book._id}') Edit Book
+									a.button.is-danger#delete(href='/books/delete/#{book._id}') Delete
 							|           	
-					|         
+					|         	
 					.column.is-8.is-offset-1
 						.title.is-2.is-white= book.title
 						|           

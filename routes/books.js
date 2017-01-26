@@ -1,40 +1,9 @@
 var express = require('express'),
     router = express.Router(),
-    Chance = require('chance'),
-    LocalStorage = require('node-localstorage').LocalStorage,
-    localStorage = new LocalStorage('./scratch');
+    Book = require('../models/books');
 
-
-var Book = require('../models/books');
-
-
-function handleError(){
-   res.status(500).json({
-       title: 'Error',
-       error: err
-   }); 
-}
-
-router.get('/json-books',(req, res)=>{
-    Book.find((err, docs)=>{
-        if(err){
-           return this.handleError();
-        }
-        res.send(docs);
-    });
-});
-
-router.get('/new',(req, res)=>{ //new
-    var imageUrl = '/images/bookcover.jpg'
-    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
-    res.render('new',{
-        token:token,
-        imageUrl: imageUrl
-    })
-});
-
-router.get('/:id', (req, res)=>{ //per book
-    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
+router.get('/:id', (req, res, next)=>{ //per book
+    if(typeof(req.params.id)==="string") return next();
     Book.findById(req.params.id, (err, book)=>{
         if(err){
             res.status(500).json({
@@ -46,98 +15,70 @@ router.get('/:id', (req, res)=>{ //per book
         var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
         ];
-        //console.log(book);
+        
         res.render('book',{
             book: book,
             favYear: book.published.match(/(\d{4})/)[0],
             month: monthNames[book.createDate.getMonth()],
-            token: token
         })
     });
 });
 
-
-//// middleware
-router.use('/',(req, res, next)=>{
-    jwt.verify(req.query.token, 'secret',(err, decoded)=>{
-        if(err){
-                return res.redirect('/admin/login');
-        }
-        next();
-    })
+//MIDDLEWARE FOR UNAUTHORIZED REQUESTS
+router.use((req, res)=>{
+    if(!req.user){ //IF REQ.USER IS FALSE
+        return res.redirect('/'); //REDIRECT TO HOMEPAGE
+    }
+    next();
 });
 
-router.post('/new',  (req, res)=>{
- 
-    var imageUrl = '/images/bookcover.jpg'
-    var book = new Book({
-        link: req.body.link,
-        title: req.body.title,
-        author: req.body.author,
-        published: req.body.published,
-        description: req.body.description,
-        imageUrl: imageUrl,
-        price: req.body.price,
-        createDate: Date.now()
-    });
-
-    book.save((err, book)=>{
-        if(err){
-            this.handleError();
-        }
-        res.redirect('/');
+//ROUTE FOR NEW BOOK
+router.route('/new')
+    .get((req ,res)=>{
+        res.render('new');
     })
-})
-
-
-router.get('/edit/:id',(req, res)=>{ //edit
-    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
-    Book.findById(req.params.id, (err, book)=>{
-        if(err){
-            this.handleError();
-        }
-        res.render('edit',{
-            book:book,
-            token:token
-        });
-    })
-});
-
-router.post('/edit/:id',(req, res)=>{
-    var token = localStorage.getItem('token')?'?token='+localStorage.getItem('token'):''
-    Book.findById(req.params.id, (err, book)=>{
-        if(err){
-            this.handleError();
-        }
-        book.link= req.body.link;
-        book.title= req.body.title;
-        book.author= req.body.author;
-        book.published= req.body.published;
-        book.description= req.body.description;
-        book.imageUrl= req.body.imageUrl;
-        book.price= req.body.price;
-        book.updateDate = Date.now();
-        book.save((err, book)=>{
-            if(err){
-                this.handleError();
-            }
-            res.redirect('/');
+    .post((req, res)=>{
+        //console.log(req.files)
+        var book = new Book({ //CREATE NEW BOOK INSTANCE
+            link: req.body.link,
+            title: req.body.title,
+            author: req.body.author,
+            published: req.body.published,
+            description: req.body.description,
+            imageUrl: req.imageUrl,
+            createDate: Date.now(),
+            updateDate: Date.now()
         })
-    })
-});
-
-router.get('/delete/:id', (req, res)=>{
-    Book.findById(req.params.id, (err, book)=>{
-        if(err){
-           this.handleError();
-        }
-        book.remove((err, result)=>{
-            if(err){
-              this.handleError();  
+        book.save((err, doc)=>{ //SAVE BOOK
+            if(err){ //IF THERE ARE ERRORS
+                var eArr = [];
+                for(var e of Object.keys(err.errors)){ 
+                    eArr.push(e);
+                }
+                if(eArr.length===1){ //CHECK IF THERES ONLY ONE ERROR
+                     return res.status(500).json({
+                         title: 'Invalid '+eArr[0],
+                         error:{
+                             message: err.errors[eArr[0]].message //THEN RESNPOND WITH THE ERROR
+                         }
+                    });
+                }
+                else if(eArr.length>1){ //IF ERRORS ARE GREATER THAN ONE
+                    return res.status(500).json({
+                        title: 'Multiple Errors', //SEND MULTILE ERROR ERRORS
+                        error:{
+                            message: "Error saving. Kindly check your form"
+                        }
+                    });
+                }
             }
-            res.redirect('/');
-        });
+            res.status(201).json({
+                redirect: "/"
+            });
+        })
     });
-});
-    
+
 module.exports = router;
+
+     
+     

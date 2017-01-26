@@ -1,66 +1,59 @@
 var express = require('express'),
-    router = express.Router();
-    jwt = require('jsonwebtoken');
-    bcrypt = require('bcryptjs');
+    router = express.Router(),
+    passport = require('passport')
     User = require('../models/user');
-    LocalStorage = require('node-localstorage').LocalStorage;
-    localStorage = new LocalStorage('./scratch');
 
 
-
- 
-
-// router.get('/reg', (req, res)=>{
-//     res.render('reg');
-// })
-// router.post('/reg', (req, res)=>{
-//     var user  = new User({
-//         password: bcrypt.hashSync(req.body.password,10),
-//         email: req.body.email
-//     });
-//     user.save((err, user)=>{
-//         if(err){
-//             return res.send(err);
-//         }
-//         res.send("ok");
-//     });
-// })
-
-
-router.get('/login', (req, res)=>{
-    res.render('login');
-})
-
-router.post('/login', (req, res)=>{
-    console.log(req.body.email)
-    User.findOne({email: req.body.email}, (err, user)=>{   
-        if(err){
-            return res.send({ //internal server error
-                title: 'Login Failed!',
-            });
-        }
-        if(!user){
-            return res.send({ //OK
-                title: 'Login Failed!',
-            });
-        }
-        if(!bcrypt.compareSync(req.body.pass, user.password)){
-            return res.send({ //unauthorized
-                title: 'Login Failed!',
-            });
-        }
-        var token = jwt.sign({ user: user }, 'secret', {expiresIn: '1h'}); //create a token expires in an hour
-            localStorage.setItem('token', token);
-            res.send({
-                redirect: '/',
-                token: token,
-            })
+router.route('/login')
+    .get((req, res)=>{
+        res.render('login');
+    })
+    .post((req, res)=>{
+        //console.log(req.body)
+        User.authenticate()(req.body.username, req.body.password, function (err, user, options) {
+            if (err) return res.status(500).json({error:err})
+            if (user === false) {
+                res.send({
+                    message: options.message,
+                    success: false
+                });
+            } else {
+                req.login(user, function (err) {
+                    if (err) return res.status(500).json({error:err});
+                    console.log(req.user)
+                    console.log(req.session)
+                    res.send({
+                        success: true,
+                        user: user,
+                        redirect:'/'
+                    });
+                });
+            }
+        });
+    })
+   
+router.route('/register')
+    .get((req, res)=>{
+        res.render('register')
+    })
+    .post((req, res)=>{
+        User.register(new User({username: req.body.username}), req.body.password, function(err) {
+            if (err) {
+                res.status(500).json({
+                    title: 'Error!',
+                    err: err
+                })
+                return
+            }
+            console.log('user registered!');
+            res.redirect('/');
+        });
     });
-});
 
-router.get('/logout', (req, res)=>{
-    localStorage.clear();
-    res.redirect('/');
-})
+router.get("/logout", (req, res)=>{
+    req.logout();
+    req.session.destroy()
+    res.redirect('/')
+}); 
 
 module.exports = router;
