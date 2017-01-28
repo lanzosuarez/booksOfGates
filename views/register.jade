@@ -20,12 +20,11 @@ block content
 										.row
 											.input-field.col.s12
 												input#email.validate(type='email')
-												label(for='email') Email
-												p.inv Invalid Email
+												label(for='email' data-error="Oops! Invalid Email" data-success="Right") Email
 										.row
 											.input-field.col.s12
 												input#password.validate(type='password')
-												label(for='password') Password
+												label(for='password' data-error="Invalid Password" data-success="Right") Password
 										p.control.regon
 											button.button.is-primary.is-medium.pddng#login(type='submit') Login
 
@@ -45,16 +44,15 @@ block content
 										.row
 											.input-field.col.s12
 												input#email.validate(type='email')
-												label(for='email') Email *
-												p.inv Invalid Email
+												label(for='email' data-error="Oops! Invalid Email" data-success="Alright") Email *
 										.row
 											.input-field.col.s12
 												input#pass.validate(type='password')
-												label(for='pass') Password *
+												label(for='pass' data-error="Invalid Password" data-success="Good") Password *
 										.row
 											.input-field.col.s12
 												input#confirm_password.validate(type='password')
-												label(for='confirm_password') Confirm Password *
+												label(for='confirm_password' data-error="Password didn't match" data-success="Nice") Confirm Password *
 												p.inv Password didn't match
 										p.control.regon
 											button.button.is-primary.is-medium.pddng#login(type='submit') Register

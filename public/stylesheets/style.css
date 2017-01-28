@@ -1208,11 +1208,6 @@ input{
     -webkit-transform: translateY(-140%);
     transform: translateY(-167%) !important;
 }
-.inv{
-	color: rgb(244, 67, 54);
-    font-weight: 300;
-    font-size: 14px;
-}
 .req{
 	color:#9e9e9e;
 }
