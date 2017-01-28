@@ -35,32 +35,62 @@ block content
 								.column.is-8
 									.box.content.boxColor
 										input.input#imageUrl(type='hidden', name='imageUrl' required)
-										h4.label Name:
-										p.control
-											input.input#title(type='text', placeholder='Book Title' name='title' required)
-										| 
-										h4.label Author:              
-										p.control
-											input.input#author(type='text', placeholder='Author' name='author' required)
-										|   
-										h4.label Year Published:                 
-										p.control
-											input.input#published(type='text', placeholder='Year Published ex: January 1, 2017' name='published' required)
-										| 
-										h4.label Amazon Link:  
-										p.control
-											input.input#link(type='url', placeholder='Amazon Link' name='link' required)
-										| 
-										h4.label Kindle Price:  
-										p.control
-											input.input#price(type='text', placeholder='Kindle Price' name='price' required)
-										|  
-										hr
-										h4.label Book Description:  
-										p.control
-											textarea.textarea.is-hovered#description(placeholder='Book Description' name='description' required)
-										|               
-										hr
+										//- h4.label Name:
+										//- p.control
+										//- 	input.input#title(type='text', placeholder='Book Title' name='title' required)
+										//- | 
+										//- h4.label Author:              
+										//- p.control
+										//- 	input.input#author(type='text', placeholder='Author' name='author' required)
+										//- |   
+										//- h4.label Year Published:                 
+										//- p.control
+										//- 	input.input#published(type='text', placeholder='Year Published ex: January 1, 2017' name='published' required)
+										//- | 
+										//- h4.label Amazon Link:  
+										//- p.control
+										//- 	input.input#link(type='url', placeholder='Amazon Link' name='link' required)
+										//- | 
+										//- h4.label Kindle Price:  
+										//- p.control
+										//- 	input.input#price(type='text', placeholder='Kindle Price' name='price' required)
+										//- |  
+										//- hr
+										//- h4.label Book Description:  
+										//- p.control
+										//- 	textarea.textarea.is-hovered#description(placeholder='Book Description' name='description' required)
+										//- |               
+										//- hr
+										//- |               
+										//- p.control
+										//- 	button.button.is-primary#submitButton Save 
+										//- 	|  &nbsp; &nbsp; &nbsp;
+										//- 	|                         
+										//- 	button.button.is-default#back Cancel
+										.row
+											.input-field.col.s12
+												input#title.validate(type='text', name='title' required)
+												label(for='title') Book Title *
+										.row
+											.input-field.col.s12
+												input#author.validate(type='text', name='author' required)
+												label(for='author') Author *
+										.row
+											.input-field.col.s6
+												input#published.validate(type='date' class='datepicker', name='published' required)
+												label(for='published') Year Published *
+											.input-field.col.s6
+												input#price.validate(type='text', name='price' required)
+												label(for='price') Kindle Price *
+										.row
+											.input-field.col.s12
+												input#link.validate(type='url', name='link' required)
+												label(for='link') Amazon Link *
+										.row
+											.input-field.col.s12
+												textarea#description.materialize-textarea(name='description' required)
+												label(for='description') Book Description
+
 										|               
 										p.control
 											button.button.is-primary#submitButton Save 

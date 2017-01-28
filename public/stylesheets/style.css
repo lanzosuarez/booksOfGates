@@ -1194,6 +1194,11 @@ input{
 	font-weight: 500  !important;
 	font-size: large  !important;
 }
+textarea{
+	color:white  !important;
+	font-weight: 500  !important;
+	font-size: large  !important;
+}
 .helloMsg{
     margin: 32px 0px;
 }
@@ -1210,4 +1215,9 @@ input{
 }
 .req{
 	color:#9e9e9e;
+}
+@media screen and (max-width: 767px){
+	.row .col.s6 {
+		width: 100%;
+	}
 }
