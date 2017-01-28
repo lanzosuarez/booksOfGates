@@ -4,15 +4,6 @@ var express = require('express'),
     User = require('../models/user');
 
 //backdoor
-router.use((req, res, next)=>{
-  if(req.app.get('env')==='development'){
-    User.findById('588865abac0f5d211810f451', (err, user)=>{
-      req.login(user, (err)=>{
-        res.redirect('/')
-      })
-    });
-  }
-});
 
 router.route('/login')
     .get((req, res)=>{
@@ -59,6 +50,14 @@ router.route('/register')
             res.redirect('/');
         });
     });
+
+
+router.use((req, res, next)=>{
+  if(!req.isAuthenticated()){
+     return res.redirect('/admin/login')
+  }
+  next();
+});
 
 router.get("/logout", (req, res)=>{
     req.logout();

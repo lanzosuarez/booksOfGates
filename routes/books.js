@@ -37,10 +37,10 @@ router.get('/:id', (req, res, next)=>{ //per book
 
 //MIDDLEWARE FOR UNAUTHORIZED REQUESTS
 router.use((req, res, next)=>{
-    if(!req.user){ //IF REQ.USER IS FALSE
-        return res.redirect('/'); //REDIRECT TO HOMEPAGE
-    }
-    next();
+  if(!req.isAuthenticated()){
+    return res.redirect('/admin/login')
+  }
+  next();
 });
 
 router.delete("/:id", (req, res, next)=>{
@@ -128,9 +128,6 @@ router.get('/bookCover/:id',(req, res)=>{
     })
 })
 
-function getErrors(err){
-     
-}
     
 //ROUTE FOR NEW BOOK
 router.route('/new')
