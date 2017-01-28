@@ -1,9 +1,60 @@
 extends layout
 
 block content
-      form(method='post')
-        label(for='email') Email:
-        input#email(type='text' name='username')
-        label(for='pass') Password:
-        input#pass(type='text' name='password')
-        button(type='submit') Register
+	section.hero.is-fullheight.loginBody
+		.hero-body
+			.container.loginCon
+				.columns.is-vcentered
+					.column.is-4.is-offset-4        
+						.box.boxColor.z-depth-2.form-inverse
+							ul.tabs.tabbg
+								li.tab
+									a.white-text.active.fnt(href='#login') login
+								li.tab
+									a.white-text.fnt(href='#register') register
+							#login.col.s12.content  
+								.helloMsg
+									h3.teal-text Welcome back!
+								.row
+									form.col.s12(method='post')
+										.row
+											.input-field.col.s12
+												input#email.validate(type='email')
+												label(for='email') Email
+												p.inv Invalid Email
+										.row
+											.input-field.col.s12
+												input#pass.validate(type='password')
+												label(for='pass') Password
+										p.control.regon
+											button.button.is-primary.is-medium.pddng#login(type='submit') Login
+
+							#register.col.s12.content    
+								.helloMsg
+									h3.teal-text Nice to meet you
+									p.req Required fields are marked *
+								.row
+									form.col.s12(method='post')
+										.row
+											.input-field.col.s6
+												input#first_name.validate(type='text')
+												label(for='first_name') First Name *
+											.input-field.col.s6
+												input#last_name.validate(type='text')
+												label(for='last_name') Last Name *
+										.row
+											.input-field.col.s12
+												input#email.validate(type='email')
+												label(for='email') Email *
+												p.inv Invalid Email
+										.row
+											.input-field.col.s12
+												input#pass.validate(type='password')
+												label(for='pass') Password *
+										.row
+											.input-field.col.s12
+												input#confirm_password.validate(type='password')
+												label(for='confirm_password') Confirm Password *
+												p.inv Password didn't match
+										p.control.regon
+											button.button.is-primary.is-medium.pddng#login(type='submit') Register

@@ -18,7 +18,7 @@ document.ready = (function () {
         // console.log(pass)
 
         if(email==="" || pass===""){
-            window.alert("Enter all your credentials");
+            //window.alert("Enter all your credentials");
             e.preventDefault();
             return false;
         }
@@ -42,9 +42,9 @@ document.ready = (function () {
     });
 
 
-    $('#back').click(function(){
-            window.location = '/';
-    });
+    // $('#back').click(function(){
+    //         window.location = '/';
+    // });
 
    
 
