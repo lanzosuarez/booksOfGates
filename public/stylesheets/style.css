@@ -962,6 +962,8 @@ figcaption p {
 }
 .boxColor{
 	background-color: rgba(0, 0, 0, 0.49);
+}
+.boxMar{
 	margin-top: 70px;
 }
 .boxColor h4{
