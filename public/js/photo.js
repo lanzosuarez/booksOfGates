@@ -9,6 +9,7 @@ class PhotoSubmission {
 
     uploadImage(e) {
         const fileInput = e.target;
+        console.log(fileInput)
         const uploadBtn = e.target.parentNode;
         const deleteBtn = e.target.parentNode;
 

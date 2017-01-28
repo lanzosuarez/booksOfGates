@@ -1,6 +1,18 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var schema = new Schema({
+    title:{
+        type: String, 
+        required: [true, 'Book title is missing!']
+    },
+    author: {
+        type: String,
+        required: [true, 'Author is missing!']
+    },
+    published: {
+        type: String,
+        required: [true, 'Year Published is missing!']
+    },
     link: {
         type: String,
         validate:{
@@ -12,25 +24,16 @@ var schema = new Schema({
         },
         required: [true, 'Amazon link is missing!']
     },
-    title:{
-        type: String, 
-        required: [true, 'Book title is missing!']
-    },
-    author: {
+    price: {
         type: String,
-        required: [true, 'Author is missing!']
+        required: [true, 'Price is missing']        
     },
-    published: {type: String},
     description: {
         type: String,
         required: [true, 'Description is missing!']
     },
     imageUrl: {
-        type: String
-    },
-    price: {
         type: String,
-        required: [true, 'Price is missing']        
     },
     createDate: {type: Date},
     updateDate: {type: Date},

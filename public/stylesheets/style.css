@@ -1156,4 +1156,8 @@ input[]::-webkit-input-placeholder {
     line-height: 27px;
 	color: rgb(239, 239, 239);
 }
+
+label.error {color: white; font-weight: bold;}
+input.error {border: 2px solid red}
+
 /*---------------END----------------*/

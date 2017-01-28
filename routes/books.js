@@ -6,6 +6,18 @@ var express = require('express'),
 
 var imgUrl=''; //URL FOR PICTURE UPLOAD
 
+function deletePrev(file){
+    var path = './public'+file
+    fs.exists(path, (exists)=>{
+        if(exists){
+            return fs.unlink(path, (err)=>{
+                if(err) {return console.log(err)}
+                console.log("deleted")
+            }); 
+        }
+    })
+}
+
 router.get('/:id', (req, res, next)=>{ //per book
     Book.findById(req.params.id, (err, book)=>{
         if(err) return next();
@@ -55,8 +67,14 @@ router.route('/edit/:id')
         res.render('edit');
     })
     .post((req, res)=>{
-        Book.findById(req.params.id, (err, book)=>{
-            if(err) return res.send(err) 
+        Book.findById(req.params.id, (err, book)=>{            
+            if(err){return res.send(err)} 
+            if(req.body.isChanged){ //CHECK IF NEW PICTURE WAS UPLOADED
+                if(!book.imageUrl.match(/(https:\/\/)/)){ //CHECK IF THE URL OF THE IMAGE DOESNT START WITH AN HTTP
+                    console.log("reached")
+                    deletePrev(book.imageUrl)   //THEN DELETE THE PREVIOUS BOOKCOVER
+                }
+            }
             //SET THE BOOK DETAILS ACC. TO THE FORM SENT
             book.link = req.body.link;
             book.title = req.body.title;
@@ -74,7 +92,7 @@ router.route('/edit/:id')
                 console.log(book)
                 res.send({
                     success:true,
-                    respo: 'yes'
+                    respo: 'Success!'
                 });
             });
         });
@@ -95,6 +113,24 @@ router.post('/upload', (req, res)=>{
         })
     });
 });
+
+//get bookcover URL
+router.get('/bookCover/:id',(req, res)=>{
+    Book.findById(req.params.id, (err, book)=>{
+        if(err) return res.send({
+            success: false,
+            respo: 'Something went wrong. Please try again'    
+        })
+        res.send({
+            success: true,
+            respo: book.imageUrl
+        })
+    })
+})
+
+function getErrors(err){
+     
+}
     
 //ROUTE FOR NEW BOOK
 router.route('/new')
@@ -102,42 +138,46 @@ router.route('/new')
         res.render('new');
     })
     .post((req, res)=>{
+        console.log("Reached")
         // \w+\.\w+
-        //console.log(req.files)
+        console.log(req.body)
         var book = new Book({ //CREATE NEW BOOK INSTANCE
             link: req.body.link,
             title: req.body.title,
             author: req.body.author,
             published: req.body.published,
             description: req.body.description,
-            imageUrl: req.imageUrl,
+            imageUrl: req.body.imageUrl,
             createDate: Date.now(),
             updateDate: Date.now()
-        });
-        book.save((err, doc)=>{ //SAVE BOOK
-            if(err){ //IF THERE ARE ERRORS
+        }).save((err, doc)=>{ //SAVE BOOK
+            if(err){
+                deletePrev(req.body.imageUrl);
+                console.log(err)
                 var eArr = [];
                 for(var e of Object.keys(err.errors)){ 
                     eArr.push(e);
                 }
-                if(eArr.length===1){ //CHECK IF THERES ONLY ONE ERROR
-                     return res.status(500).json({
-                         title: 'Invalid '+eArr[0],
-                         error:{
-                             message: err.errors[eArr[0]].message //THEN RESNPOND WITH THE ERROR
-                         }
-                    });
-                }
-                else if(eArr.length>1){ //IF ERRORS ARE GREATER THAN ONE
-                    return res.status(500).json({
-                        title: 'Multiple Errors', //SEND MULTILE ERROR ERRORS
-                        error:{
-                            message: "Error saving. Kindly check your form"
-                        }
-                    });
-                }
+                console.log(eArr)
+                // if(eArr.length===1){ //CHECK IF THERES ONLY ONE ERROR
+                //         return res.send({
+                //             title: 'Invalid '+eArr[0],
+                //             error:{
+                //                 respo: err.errors[eArr[0]].message //THEN RESNPOND WITH THE ERROR
+                //             }
+                //         });
+                // }
+                // else if(eArr.length>1){ //IF ERRORS ARE GREATER THAN ONE
+                //     return res.send({
+                //         title: 'Multiple Errors', //SEND MULTILE ERROR ERRORS
+                //         error:{
+                //             respo: err.errors[eArr[0]].message //"Error saving. Kindly check your form"
+                //         }
+                //     });
+                // }
             }
-            res.status(201).json({
+            console.log("Second level")
+            res.status(201).send({
                 redirect: "/"
             });
         })
