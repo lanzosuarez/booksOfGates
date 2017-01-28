@@ -153,30 +153,30 @@ router.route('/new')
         }).save((err, doc)=>{ //SAVE BOOK
             if(err){
                 deletePrev(req.body.imageUrl);
-                console.log(err)
+                console.log(err)//
                 var eArr = [];
                 for(var e of Object.keys(err.errors)){ 
                     eArr.push(e);
                 }
-                console.log(eArr)
-                // if(eArr.length===1){ //CHECK IF THERES ONLY ONE ERROR
-                //         return res.send({
-                //             title: 'Invalid '+eArr[0],
-                //             error:{
-                //                 respo: err.errors[eArr[0]].message //THEN RESNPOND WITH THE ERROR
-                //             }
-                //         });
-                // }
-                // else if(eArr.length>1){ //IF ERRORS ARE GREATER THAN ONE
-                //     return res.send({
-                //         title: 'Multiple Errors', //SEND MULTILE ERROR ERRORS
-                //         error:{
-                //             respo: err.errors[eArr[0]].message //"Error saving. Kindly check your form"
-                //         }
-                //     });
-                // }
+                //console.log(eArr)
+                if(eArr.length===1){ //CHECK IF THERES ONLY ONE ERROR
+                        return res.send({
+                            title: 'Invalid '+eArr[0],
+                            error:{
+                                respo: err.errors[eArr[0]].message //THEN RESNPOND WITH THE ERROR
+                            }
+                        });
+                }
+                else if(eArr.length>1){ //IF ERRORS ARE GREATER THAN ONE
+                    return res.send({
+                        title: 'Multiple Errors', //SEND MULTILE ERROR ERRORS
+                        error:{
+                            respo: err.errors[eArr[0]].message //"Error saving. Kindly check your form"
+                        }
+                    });
+                }
             }
-            console.log("Second level")
+            //console.log("Second level")
             res.status(201).send({
                 redirect: "/"
             });

@@ -52,7 +52,7 @@
                 return window.location = r.redirect
             }
             if(r.error){
-               // 
+               return window.alert(r.title)
             }
         });  
     } 
