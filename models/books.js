@@ -26,6 +26,13 @@ var schema = new Schema({
     },
     price: {
         type: String,
+        validate:{
+            validator: function(v){
+                var regex = /^\$\d+\.\d+$/;
+                return regex.test(v)    
+            },
+            message: 'Price supplied is Invalid'
+        },
         required: [true, 'Price is missing']        
     },
     description: {

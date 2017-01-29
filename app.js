@@ -39,9 +39,9 @@ require('./session-store');
 app.use(session({
   secret: 'This is a secret',
   cookie: {
-    maxAge: 1000 * 60 * 60// 1 week 
+    maxAge: 1000 * 60 * 60
   },
-  store: store.s,
+  store: store,
   resave: true,
   saveUninitialized: true
 }))

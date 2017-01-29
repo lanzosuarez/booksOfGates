@@ -7,7 +7,7 @@ var express = require('express'),
 
 router.route('/login')
     .get((req, res)=>{
-        res.render('login');
+        res.render('register');
     })
     .post((req, res)=>{
         //console.log(req.body)
@@ -32,24 +32,46 @@ router.route('/login')
             }
         });
     })
+
+
+ 
    
-router.route('/register')
-    .get((req, res)=>{
-        res.render('register')
-    })
-    .post((req, res)=>{
-        User.register(new User({username: req.body.username}), req.body.password, function(err) {
-            if (err) {
-                res.status(500).json({
-                    title: 'Error!',
-                    err: err
-                })
-                return
-            }
-            console.log('user registered!');
-            res.redirect('/');
+
+function extractErrrors(err){
+    var eArr=[];
+    for(var e of Object.keys(err.errors)){
+            eArr.push(err.errors[e].message)
+    }
+    return eArr.reverse();
+}
+
+router.post('/register',(req, res)=>{
+    if(req.body.c_pass !== req.body.password){
+        return res.send({
+            success:false,
+            respo: ['Password does not match']
+        });
+    }
+    User.register(new User({
+        username: req.body.username,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname
+    }), req.body.password, function(err) {
+        if (err) {
+            var e = extractErrrors(err);
+            return res.send({
+                success: false,
+                respo: e
+            });
+
+        }
+        console.log('user registered!');
+        res.send({
+            success:true,
+            respo:'/admin/login'
         });
     });
+});
 
 
 router.use((req, res, next)=>{

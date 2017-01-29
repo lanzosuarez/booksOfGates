@@ -16,42 +16,42 @@ block content
 								.helloMsg
 									h3.teal-text Welcome back!
 								.row
-									form.col.s12(method='post')
+									.col.s12
 										.row
 											.input-field.col.s12
-												input#email.validate(type='email')
-												label(for='email' data-error="Oops! Invalid Email" data-success="Right") Email
+												input#emailLogin.validate(type='email' name="log_email")
+												label#emailLoginLabel(for='email' data-error="Oops! Invalid Email" data-success="Right") Email
 										.row
 											.input-field.col.s12
-												input#password.validate(type='password')
-												label(for='password' data-error="Invalid Password" data-success="Right") Password
+												input#passwordLogin.validate(type='password' name="log_password")
+												label#passLoginLabel(for='password' data-error="Invalid Password" data-success="Right") Password
 										p.control.regon
-											button.button.is-primary.is-medium.pddng#login(type='submit') Login
+											button.button.is-primary.is-medium.pddng#loginButton Login
 
 							#register.col.s12.content    
 								.helloMsg
 									h3.teal-text Nice to meet you
 									p.req Required fields are marked *
 								.row
-									form.col.s12(method='post')
+									form#registerForm.col.s12
 										.row
 											.input-field.col.s6
-												input#first_name.validate(type='text')
-												label(for='first_name') First Name *
+												input#first_name.validate.reg(type='text')
+												label#first_name_label(for='first_name' data-error='Invalid firstname!' data-success="Alright") First Name *
 											.input-field.col.s6
-												input#last_name.validate(type='text')
-												label(for='last_name') Last Name *
+												input#last_name.validate.reg(type='text')
+												label#last_name_label(for='last_name' data-error='Invalid lastname!' data-success="Alright") Last Name *
 										.row
 											.input-field.col.s12
-												input#email.validate(type='email')
-												label(for='email' data-error="Oops! Invalid Email" data-success="Alright") Email *
+												input#emailRegister.validate.reg(type='email')
+												label#emailRegister_label(for='emailRegister' data-error="Oops! Invalid Email" data-success="Alright") Email *
 										.row
 											.input-field.col.s12
-												input#pass.validate(type='password')
-												label(for='pass' data-error="Invalid Password" data-success="Good") Password *
+												input#pass.validate.reg(type='password')
+												label#pass_label(for='pass' data-error='Invalid password!' data-success="Good") Password *
 										.row
 											.input-field.col.s12
-												input#confirm_password.validate(type='password')
-												label(for='confirm_password' data-error="Password didn't match" data-success="Nice") Confirm Password *
+												input#confirm_password.reg(type='password')
+												label#confirm_password_label(for='confirm_password' data-error='Password did\'nt match' data-success="Nice") Confirm Password *
 										p.control.regon
-											button.button.is-primary.is-medium.pddng#login(type='submit') Register
+											button.button.is-primary.is-medium.pddng#registerButton(type='submit') Register

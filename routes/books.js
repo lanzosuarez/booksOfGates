@@ -53,6 +53,14 @@ router.delete("/:id", (req, res, next)=>{
 });
 
 
+function extractErrrors(err){
+    var eArr=[];
+    for(var e of Object.keys(err.errors)){
+            eArr.push(e);
+    }
+    return eArr;
+}
+
 router.route('/edit/:id')
     // ALL REQUEST WILL START FROM HERE
     .all((req, res, next)=>{
@@ -69,7 +77,7 @@ router.route('/edit/:id')
     .post((req, res)=>{
         Book.findById(req.params.id, (err, book)=>{            
             if(err){return res.send(err)} 
-            if(req.body.isChanged){ //CHECK IF NEW PICTURE WAS UPLOADED
+            if(req.body.isChanged===true){ //CHECK IF NEW PICTURE WAS UPLOADED
                 if(!book.imageUrl.match(/(https:\/\/)/)){ //CHECK IF THE URL OF THE IMAGE DOESNT START WITH AN HTTP
                     console.log("reached")
                     deletePrev(book.imageUrl)   //THEN DELETE THE PREVIOUS BOOKCOVER
@@ -80,13 +88,18 @@ router.route('/edit/:id')
             book.title = req.body.title;
             book.author = req.body.author;
             book.published = req.body.published;
+            book.price = req.body.price;
             book.description = req.body.description;
             book.imageUrl = req.body.imageUrl;
             book.updateDate = Date.now();
             book.save((err, book)=>{
-                if(err){ return res.send({
+                console.log("reached")
+                if(err){ 
+                    var e = extractErrrors(err);
+                    return res.send({
                         success: false,
-                        respo: err
+                        respo: e,
+                        respoObj: err
                     });
                 }
                 console.log(book)
@@ -128,7 +141,7 @@ router.get('/bookCover/:id',(req, res)=>{
     })
 })
 
-    
+
 //ROUTE FOR NEW BOOK
 router.route('/new')
     .get((req ,res)=>{
@@ -151,30 +164,14 @@ router.route('/new')
             if(err){
                 deletePrev(req.body.imageUrl);
                 console.log(err)//
-                var eArr = [];
-                for(var e of Object.keys(err.errors)){ 
-                    eArr.push(e);
-                }
-                //console.log(eArr)
-                if(eArr.length===1){ //CHECK IF THERES ONLY ONE ERROR
-                        return res.send({
-                            title: 'Invalid '+eArr[0],
-                            error:{
-                                respo: err.errors[eArr[0]].message //THEN RESNPOND WITH THE ERROR
-                            }
-                        });
-                }
-                else if(eArr.length>1){ //IF ERRORS ARE GREATER THAN ONE
-                    return res.send({
-                        title: 'Multiple Errors', //SEND MULTILE ERROR ERRORS
-                        error:{
-                            respo: err.errors[eArr[0]].message //"Error saving. Kindly check your form"
-                        }
-                    });
-                }
+                res.send({
+                    success:false,
+                    respo: err
+                }); 
             }
             //console.log("Second level")
             res.status(201).send({
+                success: true,
                 redirect: "/"
             });
         })

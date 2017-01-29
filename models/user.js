@@ -4,7 +4,26 @@ var mongoose = require('mongoose'),
 
 var schema = new Schema ({
     username: {
-        type:String
+        type:String,
+        validate:{
+            validator:function(v){
+                var r = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+                return r.test(v)
+            },
+            message: 'Email is invalid!'
+        }
+    },
+    firstname: {
+        type:String,
+        required:[true, 'Missing firstname'],
+        minlength: [2, 'first name is too short'],
+        lowercase: true
+    },
+    lastname: {
+        type:String,
+        required:[true, 'Missing lastname'],
+        minlength: [2, 'last name is too short'],
+        lowercase: true
     }
 });
 

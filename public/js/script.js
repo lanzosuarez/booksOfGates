@@ -1,6 +1,4 @@
 document.ready = (function () {
-    
-  
     var $toggle = $('.nav-toggle');
     var $menu = $('.nav-menu');
 
@@ -9,20 +7,49 @@ document.ready = (function () {
       $menu.toggleClass('is-active');
     });
 
-  
-    // VALIDATION FOR FOR LOGIN
-    $('#login').click(function(e){
-        var email = $('#email').val();
-        var pass = $('#password').val();
-        // console.log(email);
-        // console.log(pass)
+    function disableLoginButton(val){
+         $('#loginButton').attr('disabled', val);
+    }
+    
+    $('#emailLogin').focus(function(){
+        $('#emailLogin').removeClass('invalid');
+    })
 
-        if(email==="" || pass===""){
-            //window.alert("Enter all your credentials");
+    $('#passwordLogin').focus(function(){
+        $('#passwordLogin').removeClass('invalid');
+    })
+
+    //check
+    $("#emailLogin").focusout(function(){
+        var email = document.getElementById('emailLogin');
+        var pass = document.getElementById('passwordLogin')
+        if(email.classList.contains('invalid')){
+            disableLoginButton(true);
+        }
+        else{
+            disableLoginButton(false);
+        }
+    });
+
+    // VALIDATION FOR FOR LOGIN
+    $('#loginButton').click(function(e){
+        var email = $('#emailLogin').val();
+        var pass = $('#passwordLogin').val();
+        console.log(email);
+        console.log(pass)
+
+        if(email===""){
+            $('#emailLogin').addClass('invalid');
+            $('#passwordLogin').addClass('invalid');
             e.preventDefault();
             return false;
         }
-
+        if(pass===""){
+            $('#passwordLogin').addClass('invalid');
+            e.preventDefault();
+            return false;
+        }
+        
         $.ajax({
             type: "POST",
             url: "/admin/login",
@@ -41,16 +68,16 @@ document.ready = (function () {
         });
     });
 
-
     // $('#back').click(function(){
     //         window.location = '/';
     // });
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
+   
+}());
+    
+  
+
 
    
 
-}());
+
 
