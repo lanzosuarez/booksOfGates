@@ -64,11 +64,11 @@
                             $('#'+value).removeClass('invalid');
                        });
                    });
-                   var index = r.respo.indexOf('title')==-1?1:r.respo.indexOf('title');
-                   console.log(index)
-                   var focus = r.respo[index];
-                   console.log(r.respo)
-                   $('#'+focus).focus();
+                //    var index = r.respo.indexOf('title')==-1?1:r.respo.indexOf('title');
+                //    console.log(index)
+                //    var focus = r.respo[index];
+                //    console.log(r.respo)
+                //    $('#'+focus).focus();
                    window.alert('Check the fields with red underline')
                 }else{
                     window.alert(r.respo)
@@ -123,6 +123,10 @@
     });
 
     $('#published').blur(function(){
+        $(this).addClass('valid')
+        console.log('dsad')
+    })
+    $('#published').focus(function(){
         $(this).addClass('valid')
         console.log('dsad')
     })

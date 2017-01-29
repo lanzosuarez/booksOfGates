@@ -157,6 +157,7 @@ router.route('/new')
             author: req.body.author,
             published: req.body.published,
             description: req.body.description,
+            price: req.body.price,
             imageUrl: req.body.imageUrl,
             createDate: Date.now(),
             updateDate: Date.now()
