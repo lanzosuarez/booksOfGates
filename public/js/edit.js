@@ -60,12 +60,14 @@
                 if(r.respoObj){
                    $.each(r.respo, function(index, value){
                        $('#'+value).addClass('invalid');
-                       $('#'+value).blur(function(){
+                       $('#'+value).focus(function(){
                             $('#'+value).removeClass('invalid');
-                            $('#'+value).addClass('invalid');
                        });
                    });
-                   var focus = r.respo[0];
+                   var index = r.respo.indexOf('title')==-1?1:r.respo.indexOf('title');
+                   console.log(index)
+                   var focus = r.respo[index];
+                   console.log(r.respo)
                    $('#'+focus).focus();
                    window.alert('Check the fields with red underline')
                 }else{
@@ -122,6 +124,7 @@
 
     $('#published').blur(function(){
         $(this).addClass('valid')
+        console.log('dsad')
     })
 
  }());

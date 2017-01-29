@@ -34,9 +34,6 @@ router.route('/login')
     })
 
 
- 
-   
-
 function extractErrrors(err){
     var eArr=[];
     for(var e of Object.keys(err.errors)){

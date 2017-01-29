@@ -164,10 +164,12 @@ router.route('/new')
             if(err){
                 deletePrev(req.body.imageUrl);
                 console.log(err)//
-                res.send({
-                    success:false,
-                    respo: err
-                }); 
+                var e = extractErrrors(err);
+                return res.send({
+                    success: false,
+                    respo: e.reverse(),
+                    respoObj: err
+                });
             }
             //console.log("Second level")
             res.status(201).send({

@@ -35,7 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
  
-require('./session-store');
+//require('./session-store');
 app.use(session({
   secret: 'This is a secret',
   cookie: {
