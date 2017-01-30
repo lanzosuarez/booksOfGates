@@ -49,6 +49,12 @@ router.post('/register',(req, res)=>{
             respo: ['Password does not match']
         });
     }
+    if(req.body.pass.length<4){
+       return res.send({
+            success:false,
+            respo: ['Password is to short']
+        }); 
+    }
     User.register(new User({
         username: req.body.username,
         firstname: req.body.firstname,
