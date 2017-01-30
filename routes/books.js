@@ -107,7 +107,8 @@ router.route('/edit/:id')
                 console.log(book)
                 res.send({
                     success:true,
-                    respo: 'Success!'
+                    respo: 'Success!',
+                    redirect:'/'
                 });
             });
         });
