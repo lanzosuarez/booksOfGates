@@ -72,7 +72,7 @@ document.ready = (function () {
     //         window.location = '/';
     // });
    $('#price').priceFormat({
-       prefix: '$ '
+       prefix: '$'
    });
 }());
     
