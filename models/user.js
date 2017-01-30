@@ -16,13 +16,13 @@ var schema = new Schema ({
     firstname: {
         type:String,
         required:[true, 'Missing firstname'],
-        minlength: [2, 'first name is too short'],
+        minlength: [2, 'First name is too short'],
         lowercase: true
     },
     lastname: {
         type:String,
         required:[true, 'Missing lastname'],
-        minlength: [2, 'last name is too short'],
+        minlength: [2, 'Last name is too short'],
         lowercase: true
     }
 });
