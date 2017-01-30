@@ -7,7 +7,7 @@ var express = require('express'),
 var imgUrl=''; //URL FOR PICTURE UPLOAD
 
 function deletePrev(file){
-    var path = './public'+file
+    var path = file
     fs.exists(path, (exists)=>{
         if(exists){
             return fs.unlink(path, (err)=>{
@@ -119,8 +119,8 @@ router.post('/upload', (req, res)=>{
         respo: 'No photo was selected'
     })
     var nf = req.files['0']
-    imgUrl='/uploads/'+uuid()+'.png'
-    nf.mv('public'+imgUrl, (err)=>{
+    imgUrl='./public/uploads/'+uuid()+'.png'
+    nf.mv(imgUrl, (err)=>{
         if (err) console.log(err)
         res.send({
             success:true,

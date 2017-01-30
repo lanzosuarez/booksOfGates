@@ -36,10 +36,14 @@ router.route('/login')
 
 function extractErrrors(err){
     var eArr=[];
-    for(var e of Object.keys(err.errors)){
+    if(err.errors){
+        for(var e of Object.keys(err.errors)){
             eArr.push(err.errors[e].message)
+        }
+       
+        return eArr.reverse();
     }
-    return eArr.reverse();
+    return err;
 }
 
 router.post('/register',(req, res)=>{
@@ -56,11 +60,12 @@ router.post('/register',(req, res)=>{
     }), req.body.password, function(err) {
         if (err) {
             var e = extractErrrors(err);
+            console.log(e);
             return res.send({
                 success: false,
                 respo: e,
-                respoObj: err
             });
+            console.log(err);
 
         }
         console.log('user registered!');

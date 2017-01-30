@@ -170,11 +170,17 @@ document.ready = (function(){
                 window.location = r.respo
             }
             else{
-                var errors="";
-                for(var x in r.respo){
-                    errors+="-"+r.respo[x]+"\n"
+                //console.log(r.respo)
+                if(r.respo[0]){
+                    var errors="";
+                    for(var x in r.respo){
+                        errors+="-"+r.respo[x]+"\n"
+                    }
+                    window.alert(errors);
+                    return;
+                }else{
+                    window.alert(r.respo.message)
                 }
-                window.alert(errors);
             }
         })
     });
