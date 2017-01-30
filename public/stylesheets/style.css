@@ -44,9 +44,9 @@ body {
     border-bottom-color: #00d1b2;
     color: #00d1b2;
 }
-.tabs li.is-active a {
-    border-bottom-color: #00d1b2;
-    color: #00d1b2;
+.tabs li a.is-active {
+    border-bottom-color: #00d1b2 !important;
+    color: #00d1b2 !important;
 }
 .tabs:not(:last-child) {
      padding-bottom: 0px !important;
