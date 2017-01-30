@@ -15,7 +15,7 @@ function deletePrev(file){
                 console.log("deleted")
             }); 
         }
-    })
+    });
 }
 
 router.get('/:id', (req, res, next)=>{ //per book
@@ -43,13 +43,17 @@ router.use((req, res, next)=>{
   next();
 });
 
-router.delete("/:id", (req, res, next)=>{
+router.get("/delete/:id", (req, res, next)=>{
     Book.findById(req.params.id, (err, book)=>{
         if(err) return next();
-        res.redirect('/');
+        book.remove((err,book)=>{
+            if(!book.imageUrl.match(/(https:\/\/)/)){ //CHECK IF THE URL OF THE IMAGE DOESNT START WITH AN HTTP
+                deletePrev(book.imageUrl);   //THEN DELETE THE PREVIOUS BOOKCOVER
+            }
+            res.redirect('/');
+        });   
     });
 });
-
 
 function extractErrrors(err){
     var eArr=[];
