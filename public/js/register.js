@@ -18,14 +18,23 @@ document.ready = (function(){
         return f1 === f2 ? true:false;
     }
 
+    function remove(field){
+        field.classList.remove('invalid');
+        field.classList.remove('valid');
+    }
+
+    function addRemove(field){
+        field.classList.remove('invalid');
+        field.classList.add('valid');
+    }
+
     fname.addEventListener('focus', function(){
         fname.addEventListener('keyup', function(){
             console.log(txtTest(fname.value))
             if(txtTest(fname.value)){
                 fname.classList.add('invalid')
             }else{
-                fname.classList.remove('invalid');
-                fname.classList.add('valid');
+                addRemove(fname);
             }
         });   
     });
@@ -33,14 +42,12 @@ document.ready = (function(){
 
     fname.addEventListener('blur', function(){
         if(fname.value===""){
-            fname.classList.remove('invalid');
-            fname.classList.remove('valid');
+            remove(fname);
         }else{
             if(txtTest(fname.value)){
             fname.classList.add('invalid')
             }else{
-                fname.classList.remove('invalid');
-                fname.classList.add('valid');
+                addRemove(fname);
             }
         }
     });
@@ -48,14 +55,12 @@ document.ready = (function(){
     lname.addEventListener('focus', function(){
         lname.addEventListener('keyup', function(){
            if(lname.value===""){
-                lname.classList.remove('invalid');
-                lname.classList.remove('valid');
+                remove(lname);
            }else{
                 if(txtTest(lname.value)){
                     lname.classList.add('invalid')
                 }else{
-                    lname.classList.remove('invalid');
-                    lname.classList.add('valid');
+                   addRemove(lname);
                 }
            }
         });   
@@ -64,28 +69,24 @@ document.ready = (function(){
 
     lname.addEventListener('blur', function(){
         if(lname.value===""){
-            lname.classList.remove('invalid');
-            lname.classList.remove('valid');
+            remove(lname);
         }else{
             if(txtTest(lname.value)){
                 lname.classList.add('invalid')
             }else{
-                lname.classList.remove('invalid');
-                lname.classList.add('valid');
+                addRemove(lname);
             }
         }
     });
 
     email.addEventListener('keyup', function(){
         if(email.value===""){
-            email.classList.remove('invalid');
-            email.classList.remove('valid');
+            remove(email);
         }else{
             if(!emailRegex.test(email.value)){
                 email.classList.add('invalid')
             }else{
-                email.classList.remove('invalid');
-                email.classList.add('valid');
+                addRemove(email);
             }
         }
     });
@@ -98,12 +99,10 @@ document.ready = (function(){
         }
         else{
             if(pass.value===""){
-                c_pass.classList.remove('invalid');
-                c_pass.classList.remove('valid');
+                remove(c_pass);
             }else{
                 console.log("match")
-                c_pass.classList.remove('invalid');
-                c_pass.classList.add('valid');
+                addRemove(c_pass);
             }  
         } 
     }

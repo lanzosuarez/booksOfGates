@@ -46,9 +46,7 @@ router.use((req, res, next)=>{
 router.delete("/:id", (req, res, next)=>{
     Book.findById(req.params.id, (err, book)=>{
         if(err) return next();
-        res.send({
-            redirect:'/'
-        });
+        res.redirect('/');
     });
 });
 
