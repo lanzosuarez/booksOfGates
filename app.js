@@ -5,11 +5,17 @@ var express = require('express'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
+
+  
 	fileUpload = require('express-fileupload'),
+
+
 	passport = require('passport'),
   session = require('express-session'),
   LocalStrategy = require('passport-local').Strategy,
-  store = require('./session-store');
+  store = require('./session-store'),
+  methodOverrice = require('method-override'),
+  restify = require('express-restify-mongoose');
 
 var index = require('./routes/index'),
 	  books = require('./routes/books'),
@@ -34,6 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
+app.use(methodOverride());
  
 //require('./session-store');
 app.use(session({
