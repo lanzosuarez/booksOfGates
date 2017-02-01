@@ -1,0 +1,68 @@
+extends layout
+
+block content
+
+	section#newBody
+		.hero-body.content
+			form#myForm(enctype='multipart/form-data')
+				.container
+					.section.new-header
+						.container
+							.columns
+								.column
+									span.title.is-3.is-white Favorite Books
+									|           
+									span.title.is-3.has-text-muted &nbsp;|&nbsp;
+									|   
+									span.title.is-4.has-text-muted New Book
+						|  
+					.section.newBook 
+						.container
+							.columns
+								.column.is-auto
+									.container
+										.photo_submit-container
+											.photo_submit-container
+												label.photo_submit.js-photo_submit1
+													input.photo_submit-input.js-photo_submit-input#newBookImg(type='file' name='bookImage')
+													|             
+													span.photo_submit-plus
+													|             
+													span.photo_submit-uploadLabel Upload photo
+													|             
+													span.photo_submit-delete
+												
+								.column.is-8
+									.box.content.boxColor
+										input.input#imageUrl(type='hidden', name='imageUrl' required)
+										.row
+											.input-field.col.s12
+												input#title.validate(type='text', name='title' required)
+												label#titleLabel(for='title') Book Title *
+										.row
+											.input-field.col.s12
+												input#author.validate(type='text', name='author' required)
+												label#authorLabel(for='author') Author *
+										.row
+											.input-field.col.s6
+												input#published(type='date' class='datepicker', name='published' required)
+												label#publishedLabel(for='published') Year Published *
+											.input-field.col.s6
+												input#price.validate(type='text', name='price' required)
+												label#priceLabel(for='price') Kindle Price *
+										.row
+											.input-field.col.s12
+												input#link.validate(type='url', name='link' required)
+												label#linkLabel(for='link') Amazon Link *
+										.row
+											.input-field.col.s12
+												textarea#description.materialize-textarea.validate(name='description' required)
+												label#descriptionLabel(for='description') Book Description
+
+										|               
+										p.control
+											button.button.is-primary#submitButton Save 
+											|  &nbsp; &nbsp; &nbsp;
+											|                         
+											button.button.is-default#back Cancel
+

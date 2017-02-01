@@ -1,2 +1,5 @@
 /node_modules
-npm-debug.log
+/assets
+/.vscode
+/debug.log
+/how-to-use.txt

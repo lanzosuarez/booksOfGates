@@ -1,51 +1,11 @@
-extends layout
-
-block content
-  .section
-    .columns
-      .column.is-two-thirds.center
-        .content
-          h4(align="justify")
-            | "Never before have I felt so empowered to learn as I do today. When I was young, there were few options to learn on my own. My parents had a set of World Book Encyclopedias, which I read through in alphabetical order. But there were no online courses, video lectures, or podcasts to 
-            | introduce me to new ideas and thinkers as we have today. Still, reading books is my favorite way to learn about a new topic. I’ve been reading about a book a week on average since I was a kid. Even when my schedule is out of control, I carve out a lot of time for reading. If you’re 
-            | looking for a book to enjoy over the holidays, here are some of my favorites from this year. They cover an eclectic mix of topics—from tennis to tennis shoes, genomics to great leadership. They’re all very well written, and they all dropped me down a rabbit hole of unexpected 
-            | insights and pleasures."
-    
-
-
-  section.hero
-    .hero-body
-      p.title.is-2(align="center") Favorite Books
-      .component
-        ul.align
-          each book in books   
-            li
-              figure.book
-                // Front
-                ul.hardcover_front
-                  li
-                    img(src='#{book.imageUrl}', alt='',)#imgBook
-                    span.ribbon.bestseller Nº1
-                  li
-                // Pages
-                ul.page
-                  li
-                  li
-                    a.btn(href='/books/#{book._id}') View More
-                  li
-                  li
-                  li
-                // Back
-                ul.hardcover_back
-                  li
-                  li
-                ul.book_spine
-                  li
-                  li
-                figcaption.content#style-4.scrollbar
-                  .container.conBook
-                    h1= book.title
-                    span= book.author
-                    p= book.description
-          
-        
+doctype html
+html
+  head
+    base(href='/')
+    title Angular 2 Messenger
+    // <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    link(rel='stylesheet', href='/stylesheets/bulma.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    my-app Loading...
+    script(src='/js/app/bundle.js')

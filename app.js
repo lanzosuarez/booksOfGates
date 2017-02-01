@@ -4,9 +4,11 @@ var express = require('express'),
 	logger = require('morgan'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
-	mongoose = require('mongoose'),
 
-  
+
+	mongoose = require('mongoose'),
+  restify = require('express-restify-mongoose');
+
 	fileUpload = require('express-fileupload'),
 
 
@@ -14,12 +16,12 @@ var express = require('express'),
   session = require('express-session'),
   LocalStrategy = require('passport-local').Strategy,
   store = require('./session-store'),
-  methodOverrice = require('method-override'),
+  methodOverride = require('method-override'),
   restify = require('express-restify-mongoose');
 
-var index = require('./routes/index'),
-	  books = require('./routes/books'),
-	  admin = require('./routes/admin');
+var index = require('./routes/index');
+	  // books = require('./routes/books'),
+	  // admin = require('./routes/admin');
 
 var User = require('./models/user');
 
@@ -41,7 +43,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 app.use(methodOverride());
- 
+
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+    next();
+});
+
+
 //require('./session-store');
 app.use(session({
   secret: 'This is a secret',
@@ -63,27 +74,15 @@ app.use((req, res, next)=>{
   next();
 });
 
-app.use('/admin', admin);
-app.use('/', index);
-app.use('/books', books);
+// app.use('/admin', admin);
+// app.use('/', index);
+// app.use('/books', books);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    return res.render('index');
 });
 
 module.exports = app;
