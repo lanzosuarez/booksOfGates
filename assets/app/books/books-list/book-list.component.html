@@ -1,0 +1,17 @@
+<section class="hero">
+    <div class="hero-body">
+        <p align="center" class="title is-2">Favorite Books</p>
+        <div class="component">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-6">
+                        <bg-book-item [book]=book 
+                        *ngFor="let book of books;"
+                        ></bg-book-item>
+                    </div>
+                    <div class="column is-6"></div>
+                </div>       
+            </div>
+        </div>
+    </div>
+</section>
