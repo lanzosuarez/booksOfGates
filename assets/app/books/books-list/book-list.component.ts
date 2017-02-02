@@ -5,7 +5,7 @@ import { BookService } from '../book.service';
 
 @Component({
   selector: 'bg-book-list',
-  templateUrl: './book-list.component.html'
+  templateUrl: './book-list.component.html',
 })
 export class BookListComponent implements OnInit {
   books: Book[] = [];
