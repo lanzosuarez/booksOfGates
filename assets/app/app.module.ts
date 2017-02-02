@@ -1,12 +1,13 @@
-import { BookService } from './books/book.service';
-import { BookListComponent } from './books/books-list/book-list.component';
-import { BookItemComponent } from './books/books-list/book-item.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from "./app.component";
+import { BookDetailComponent } from './books/books-detail/book-detail.component';
+import { BookService } from './books/book.service';
+import { BookListComponent } from './books/books-list/book-list.component';
+import { BookItemComponent } from './books/books-list/book-item.component';
 import { HeaderComponent } from "./header.component";
 import { BooksComponent } from './books/books.component';
 import { AppRouting } from "./app.routing";
@@ -17,7 +18,8 @@ import { AppRouting } from "./app.routing";
         HeaderComponent,
         BooksComponent,
         BookListComponent,
-        BookItemComponent
+        BookItemComponent,
+        BookDetailComponent
     ],
     imports: [
         BrowserModule,
