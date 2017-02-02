@@ -1,8 +1,32 @@
-<div class='bgAlign'>
-    <bg-book-item [book]=book 
-    *ngFor="let book of books;"
-    ></bg-book-item>
+<div class="section">
+  <div class="columns">
+    <div class="column is-two-thirds center">
+      <div class="content">
+        <h4 align="justify">
+          "Never before have I felt so empowered to learn as I do today. When I was young, there were few options to learn on my own. My parents had a set of World Book Encyclopedias, which I read through in alphabetical order. But there were no online courses, video lectures, or podcasts to
+          introduce me to new ideas and thinkers as we have today. Still, reading books is my favorite way to learn about a new topic. I’ve been reading about a book a week on average since I was a kid. Even when my schedule is out of control, I carve out a lot of time for reading. If you’re
+          looking for a book to enjoy over the holidays, here are some of my favorites from this year. They cover an eclectic mix of topics—from tennis to tennis shoes, genomics to great leadership. They’re all very well written, and they all dropped me down a rabbit hole of unexpected
+          insights and pleasures."
+        </h4>
+      </div>
+    </div>
+  </div>
 </div>
-<bg-book-detail></bg-book-detail>
+<section class="hero">
+    <div class="hero-body">
+            <p align="center" class="title is-2">Favorite Books</p>
+            <div class="column is-10 is-offset-1">
+                <div class='bgAlign'>
+                    <bg-book-item [book]=book 
+                    *ngFor="let book of books;"
+                    ></bg-book-item>
+                </div>
+            </div>
+    </div>
+</section>
+
+
+
+
 
         
