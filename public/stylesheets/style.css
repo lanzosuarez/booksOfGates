@@ -125,12 +125,19 @@ body {
 
 /* basic grid, only for this demo */
 
-.align {
+/*.align {
 	clear: both;
 	margin: 90px auto 20px;
 	width: 100%;
 	max-width: 1170px;
 	text-align: center;
+}*/
+.bgAlign{
+	clear: both;
+    margin: 26px auto 20px;
+    width: 100%;
+    max-width: 1170px;
+    text-align: center;
 }
 
 .align > li {

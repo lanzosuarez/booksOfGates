@@ -7,7 +7,6 @@ import { Book } from '../book';
   templateUrl: './book-item.component.html',
   styles: [`
   .bookWidth{
-      width: 500px;
       min-height: 300px;
       display: inline-block;
       vertical-align: top;
