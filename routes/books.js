@@ -170,6 +170,12 @@ router.route('/new')
             });
         })
     });
+
+router.route('/search')
+    .get((req ,res)=>{
+        console.log("dsdas")
+        res.render('search');
+    })
     
 module.exports = router;
 
