@@ -1,5 +1,5 @@
 document.ready = (function(){
-    
+    if(window.location.pathname=='/admin/login'){
     var rform = document.getElementById('registerForm');
     var email = document.getElementById('emailRegister');
     var fname = document.getElementById('first_name');
@@ -185,4 +185,6 @@ document.ready = (function(){
             }
         })
     });
+
+    }
 }());

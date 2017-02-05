@@ -17,35 +17,7 @@ block content
     .hero-body
       p.title.is-2(align="center") Favorite Books
       .component
-        ul.align
-          each book in books   
-            li
-              figure.book
-                // Front
-                ul.hardcover_front
-                  li
-                    img(src='#{book.imageUrl}', alt='',)#imgBook
-                    span.ribbon.bestseller Nº1
-                  li
-                // Pages
-                ul.page
-                  li
-                  li
-                    a.btn(href='/books/#{book._id}') View More
-                  li
-                  li
-                  li
-                // Back
-                ul.hardcover_back
-                  li
-                  li
-                ul.book_spine
-                  li
-                  li
-                figcaption.content#style-4.scrollbar
-                  .container.conBook
-                    h1= book.title
-                    span= book.author
-                    p= book.description
+        ul.align#bookList
+         
           
         

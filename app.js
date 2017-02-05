@@ -6,24 +6,28 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
 
-  
+  //FILE UPLOAD
 	fileUpload = require('express-fileupload'),
 
-
+  //AUTHENTICATION
 	passport = require('passport'),
   session = require('express-session'),
   LocalStrategy = require('passport-local').Strategy,
   store = require('./session-store'),
-  methodOverrice = require('method-override'),
+  methodOverride = require('method-override'),
   restify = require('express-restify-mongoose');
 
+//ROUTERS
 var index = require('./routes/index'),
 	  books = require('./routes/books'),
 	  admin = require('./routes/admin');
 
+//MODELS
 var User = require('./models/user');
+var Book = require('./models/books');
 
 var app = express();
+var router = express.Router();
 
 var uri = process.env.MONGOLAB_URI || 'mongodb://lanzosuarez:bobotngacla1234@ds055802.mlab.com:55802/gates-books'
 mongoose.connect(uri)
@@ -32,6 +36,9 @@ mongoose.connect(uri)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+
+
+//MIDDLEWARES
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -42,6 +49,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 app.use(methodOverride());
  
+
+
+ //SESSION SETUP
 //require('./session-store');
 app.use(session({
   secret: 'This is a secret',
@@ -55,6 +65,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 require('./passport-init');
+
+//RESTFUL API
+restify.serve(router, Book)
+restify.serve(router, User)
+app.use(router)
 
 app.use((req, res, next)=>{
   if(req.user){
