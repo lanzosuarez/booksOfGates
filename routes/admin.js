@@ -84,6 +84,12 @@ router.use((req, res, next)=>{
   next();
 });
 
+router.get('/user', (req, res)=>{
+    res.send({
+        user:req.user
+    });
+})
+
 router.get("/logout", (req, res)=>{
     req.logout();
     req.session.destroy()

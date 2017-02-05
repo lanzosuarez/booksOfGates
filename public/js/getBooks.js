@@ -2,6 +2,7 @@ document.ready = (function(){
 
     if(window.location.pathname==='/'){
         //GET BOOKS
+        console.log("Hello im in index")
         $.ajax({
             type: 'GET',
             url: 'api/v1/Book'

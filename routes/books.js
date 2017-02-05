@@ -19,20 +19,7 @@ function deletePrev(file){
 }
 
 router.get('/:id', (req, res, next)=>{ //per book
-    Book.findById(req.params.id, (err, book)=>{
-        if(err) return next();
-        if(!book) return res.send(err);
-
-        var monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-        ];
-        
-        res.render('book',{
-            book: book,
-            favYear: book.published.match(/(\d{4})/)[0],
-            month: monthNames[book.createDate.getMonth()],
-        });
-    });
+    res.render('book');
 });
 
 //MIDDLEWARE FOR UNAUTHORIZED REQUESTS
@@ -148,6 +135,7 @@ router.get('/bookCover/:id',(req, res)=>{
 //ROUTE FOR NEW BOOK
 router.route('/new')
     .get((req ,res)=>{
+        console.log("dsdas")
         res.render('new');
     })
     .post((req, res)=>{
