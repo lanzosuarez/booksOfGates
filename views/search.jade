@@ -1,0 +1,94 @@
+extends layout
+
+block content
+  .section
+    .columns
+      .column.is-two-thirds.center
+        .content
+          h4(align="justify")
+            | "Never before have I felt so empowered to learn as I do today. When I was young, there were few options to learn on my own. My parents had a set of World Book Encyclopedias, which I read through in alphabetical order. But there were no online courses, video lectures, or podcasts to 
+            | introduce me to new ideas and thinkers as we have today. Still, reading books is my favorite way to learn about a new topic. I’ve been reading about a book a week on average since I was a kid. Even when my schedule is out of control, I carve out a lot of time for reading. If you’re 
+            | looking for a book to enjoy over the holidays, here are some of my favorites from this year. They cover an eclectic mix of topics—from tennis to tennis shoes, genomics to great leadership. They’re all very well written, and they all dropped me down a rabbit hole of unexpected 
+            | insights and pleasures."
+    
+
+
+  section.hero
+    //- .hero-body
+    //-     .columns
+    //-         .column.is-two-thirds.center
+    //-             .content
+    //-                 .column(align="left")
+    //-                     span.p.title.is-3 Favorite Books
+    //-                     |           
+    //-                     span.title.is-3.has-text-muted &nbsp;|&nbsp;
+    //-                     |   
+    //-                     span.title.is-4.has-text-muted 123 
+    //-                         |  posts
+    //-                     |  
+    //-                 .component
+    //-                     ul.align#bookList
+    .section
+        .columns
+            .column.is-two-thirds.center
+                .content
+                    .container.columns
+                        .container.column.is-6(align="left")
+                            span.p.title.is-3 Favorite Books
+                            |           
+                            span.title.is-3.has-text-muted &nbsp;|&nbsp;
+                            |   
+                            span.title.is-4.has-text-muted 123 
+                                |  books
+                            |  
+                        .column.column.is-6
+                                .container
+                                    .nav-wrapper
+                                        form
+                                            .input-field
+                                                input#search(type='text', name='search')
+                                                label.searchLabel(for='search') Search Book
+                                                a.button.is-primary.is-inverted.sbtn
+                                                    span.icon.is-small.spn
+                                                        i.fa.fa-search.fsearch
+
+                                               
+
+
+                    .container.columns
+                        .column.is-6
+                            .is-left
+                                span.title.is-4.has-text-muted 123 books
+                        .column.is-6#sortDate
+                            ul.rightUl
+                                li.link
+                                    a(href="")
+                                        span.icon
+                                            i.fa.fa-list
+                                        |  
+                                        span All
+                                |           
+                                li.link
+                                    a(href="")
+                                        span.icon
+                                            i.fa.fa-heart
+                                        |  
+                                        span Newest
+                                |           
+                                li.link
+                                    a(href="")
+                                        span.icon
+                                            i.fa.fa-th
+                                        |  
+                                        span Oldest
+                                |           
+
+
+
+                
+        
+                                    
+
+                                
+          
+        

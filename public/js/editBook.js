@@ -9,7 +9,7 @@ document.ready = (function(){
 
     if(urlRegex.test(window.location.pathname)){
 
-        function getUserPart(book){
+        function getUserPart(book, user){
             return user?`<div class="column editButton">
                                     <a id="edit" href="/books/edit/${book._id}" class="button is-primary">Edit Book</a>
                                     <a id="delete" href="/books/delete/${book._id}" class="button is-danger">Delete</a>
@@ -20,11 +20,13 @@ document.ready = (function(){
         console.log(window.location.pathname.match(bookIdRegex)[0].slice(1));
         var id = window.location.pathname.match(bookIdRegex)[0].slice(1)
         var user;
+
         $.ajax({
             type: 'GET',
             url: '/admin/user'
         }).done(function(r){
-            user=r;
+            user=r.respo;
+            console.log(r.respo)
         });
 
         $.ajax({
@@ -39,7 +41,7 @@ document.ready = (function(){
                 date = month+" " + transformedDate.getDate() + ", " + transformedDate.getFullYear(),
                 update = Math.ceil((Date.now()- new Date(book.updateDate))/86400000),
 				day = update>1?'days':'day';
-                userPart= getUserPart(book)     
+                userPart= getUserPart(book,user);   
 
             var location = document.getElementById('newBody');
             console.log(r);

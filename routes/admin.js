@@ -76,6 +76,12 @@ router.post('/register',(req, res)=>{
     });
 });
 
+router.get('/user', (req, res)=>{
+    if(!req.user)return res.send({respo:false})
+    res.send({respo:true});
+})
+
+
 
 router.use((req, res, next)=>{
   if(!req.isAuthenticated()){
@@ -84,11 +90,6 @@ router.use((req, res, next)=>{
   next();
 });
 
-router.get('/user', (req, res)=>{
-    res.send({
-        user:req.user
-    });
-})
 
 router.get("/logout", (req, res)=>{
     req.logout();
