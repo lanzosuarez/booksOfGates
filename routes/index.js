@@ -4,17 +4,13 @@ var Book = require('../models/books');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Book.find((err, docs)=>{
-        if(err){
-            return res.status(500).json({
-                title: 'Error getting messages',
-                error: err
-            });
-        }
-        res.render('index', { 
-            books: docs,
-        });
-    });
+  res.render('index');
 });
+
+
+router.route('/search')
+    .get(function(req,res){
+        res.render('search')
+    })
 
 module.exports = router;

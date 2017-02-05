@@ -20,7 +20,8 @@ var express = require('express'),
 //ROUTERS
 var index = require('./routes/index'),
 	  books = require('./routes/books'),
-	  admin = require('./routes/admin');
+	  admin = require('./routes/admin'),
+    newBook = require('./routes/newBook');
 
 //MODELS
 var User = require('./models/user');
@@ -78,7 +79,7 @@ app.use((req, res, next)=>{
   next();
 });
 
-
+app.use('/new', newBook);
 app.use('/admin', admin);
 app.use('/', index);
 app.use('/books', books);
