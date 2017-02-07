@@ -13,32 +13,32 @@ IndexLib.returnIndex = (function(){
             //GET BOOKS
             console.log("Hello im in index");
             if(books.length===0){
-                 initialGet();
+                 initialGet(); // INITIALIZE BOOKS ARRAY
             }else{
-                retrievedBooks=[];
-                insertUpperPart();
-                insertBooks(books);
-                listener();
+                retrievedBooks=[]; // EVERTIME YOU HIT THE HOME PAGE SET EMPTY THE RETRIEVE BOOKS
+                insertUpperPart(); //INSERT THE UPPER PART
+                insertBooks(books); //THEN INSERT THE BOOKS
+                listener(); //THEN ASSIGN LISTENERS
             }          
         }
     }
 
     function initialGet(){
-        $.ajax({    //GET BOOKS
+        $.ajax({    //GET BOOKS USING AJAX
             type: 'GET',
             url: 'api/v1/Book'
         }).done(function(r){
-            books = r;
-            retrievedBooks=[];
-            count = r.length;
-            insertUpperPart();
-            insertBooks(books);
-            listener();
+            books = r; //INITIALIZE BOOKS
+            retrievedBooks=[]; //SET RETRIVEBOOKS TO ZERO. BE CONSISTENT
+            count = r.length; //SET COUNT TO NUMBER OF BOOKS
+            insertUpperPart(); //INSERT UPPER PART
+            insertBooks(books); //INSERT BOOKS
+            listener(); //ASSIGN LISTENERS
         });
     }
 
     function insertUpperPart(){
-        $('#bodySection').html('');
+        $('#bodySection').html(''); //CLEAR BODY SECTION CONTENT
             const bodySection = document.getElementById('bodySection'); //GET BODY SECTION
             bodySection.insertAdjacentHTML('beforeend',     //THEN INSERT THIS TO BODYSECTION
                 `
@@ -49,11 +49,11 @@ IndexLib.returnIndex = (function(){
     }
 
     function insertBooks(books){
-        $('#bookList').html('');
+        $('#bookList').html(''); //CLEAR BOOKS LIST CONTENT
         console.log(books)
         const bookList = document.getElementById('bookList'); //GET BOOKLIST LOCATION
         if(books.length!==0){
-            books.forEach(function(book){
+            books.forEach(function(book){ //INSERT ALL THE BOOKS
                 bookList.insertAdjacentHTML('beforeend',
                 `
                 <li> <figure class="book"> <ul class="hardcover_front"> <li><img src="${book.imageUrl}" alt="" id="imgBook"/><span class="ribbon bestseller">Nº1</span></li><li></li></ul> <ul class="page"> <li></li><li><a class="btn bookButton" id="${book._id}" >View More</a></li><li></li><li></li><li></li></ul> <ul class="hardcover_back"> <li></li><li></li></ul> <ul class="book_spine"> <li></li><li></li></ul> <figcaption id="style-4" class="content scrollbar"> <div class="container conBook"> <h1>${book.title}</h1> <span>${book.author}</span> <p>${book.description}</p></div></figcaption> </figure> </li>
