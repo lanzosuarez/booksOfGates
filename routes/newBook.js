@@ -23,6 +23,13 @@ function extractErrrors(err){
     return eArr;
 }
 
+router.use((req, res, next)=>{
+  if(!req.isAuthenticated()){
+    return res.redirect('/admin/login')
+  }
+  next();
+});
+
 
 router.route('/')
     .get((req ,res)=>{
