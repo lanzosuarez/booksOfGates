@@ -2,17 +2,6 @@ var express = require('express'),
     router = express.Router(),
     Book = require('../models/books'),
     fs = require('fs');
-//ROUTE FOR NEW BOOK
-
-
-
-function extractErrrors(err){
-    var eArr=[];
-    for(var e of Object.keys(err.errors)){
-            eArr.push(e);
-    }
-    return eArr;
-}
 
 function deletePrev(file){
     var path = './public'+file
@@ -25,6 +14,15 @@ function deletePrev(file){
         }
     });
 }
+
+function extractErrrors(err){
+    var eArr=[];
+    for(var e of Object.keys(err.errors)){
+            eArr.push(e);
+    }
+    return eArr;
+}
+
 
 router.route('/')
     .get((req ,res)=>{

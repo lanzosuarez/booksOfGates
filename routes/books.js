@@ -18,9 +18,12 @@ function deletePrev(file){
     });
 }
 
-// router.get('/:id', (req, res, next)=>{ //per book
-//     res.render('index');
-// });
+router.get('/:id', (req, res, next)=>{ //per book
+    res.render('index');
+});
+router.get('/', (req, res, next)=>{ //per book
+    res.render('index');
+});
 
 //MIDDLEWARE FOR UNAUTHORIZED REQUESTS
 router.use((req, res, next)=>{
@@ -131,8 +134,5 @@ router.get('/bookCover/:id',(req, res)=>{
         })
     })
 })
-
-
-
 
 module.exports = router;

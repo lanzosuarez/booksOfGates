@@ -946,7 +946,14 @@ figcaption p {
 }
 /*----------------END---------------*/
 /*-------------NEW BOOK-------------*/
-#newBody{
+#newBook{
+	width: auto;
+	height: auto;
+	background: url(../../images/newbg.jpg) no-repeat center cadetblue;
+	background-size: cover;
+}
+
+.back{
 	width: auto;
 	height: auto;
 	background: url(../../images/newbg.jpg) no-repeat center cadetblue;

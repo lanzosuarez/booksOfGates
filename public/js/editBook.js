@@ -46,10 +46,10 @@ var editLib = editLib || {};
                     update = Math.ceil((Date.now()- new Date(book.updateDate))/86400000),
                     day = update>1?'days':'day';
                     userPart= getUserPart(book,user);   
-
+                
+                console.log(r)
                 var location = document.getElementById('bodySection');
                 $('#bodySection').html('');
-                console.log(r);
                 location.insertAdjacentHTML('beforeend',
                     `
                     <div class="section new-header"> <div class="container"> <div class="columns"> <div class="column"><span class="title is-3 is-white">Favorite Books</span> <span class="title is-3 has-text-muted">&nbsp;|&nbsp;</span> <span class="title is-4 has-text-muted">${favYear}</span> </div></div></div></div><div class="section viewBook"> <div class="container"> <div class="columns"> <div class="column is-3"> <div class="container marginb"> <ul class="align2"> <li> <figure class="book"> <ul class="hardcover_front"> <li><img src="${book.imageUrl}" alt="" id="imgBook"/><span class="ribbon bestseller">N�1</span></li><li></li></ul> <ul class="page"> <li></li><li></li><li></li><li></li><li></li></ul> <ul class="hardcover_back"> <li></li><li></li></ul> <ul class="book_spine"> <li></li><li></li></ul> </figure> </li></ul> <div class="container"></div>${userPart}</div></div><div class="column is-8 is-offset-1"> <div class="title is-2 is-white">${book.title}</div><p class="title is-3 has-text-muted">${book.price}</p><hr/><br/> <p align="justify" class="is-white">${book.description}</p><br/><br/><br/> <table class="table"> <tbody> <tr> <td class="has-text-right"><strong class="is-bl">Amazon Link</strong></td><td class="is-tdsize">${book.link}</td></tr><tr> <td class="has-text-right"><strong class="is-bl">Year Published</strong></td><td class="is-tdsize">${book.published}</td></tr><tr> <td class="has-text-right"><strong class="is-bl">Date Created</strong></td><td class="is-tdsize">${date}</td></tr><tr> <td class="has-text-right"><strong class="is-bl">Date Updated</strong></td><td class="is-tdsize">${update}${day}ago</td></tr><tr></tr></tbody> </table> </div></div></div></div>
@@ -67,6 +67,8 @@ var editLib = editLib || {};
 }());
 
 editLib.returnEditBook.returnBook();
+
+//LISTEN FOR POPSTATES
 window.addEventListener('popstate', function(e){
     console.log(location.pathname);
     var path = location.pathname;
@@ -75,5 +77,12 @@ window.addEventListener('popstate', function(e){
     }
     if(editLib.returnEditBook.urlRegex.test(path)){
         editLib.returnEditBook.returnBook();
+    }
+    if(IndexLib.returnIndex.testIfSearch(path+location.search)){
+        var locSearch = decodeURIComponent(location.search); //get the uri then decode it
+        var s = locSearch.slice(locSearch.indexOf('=')+1); //get the query string
+        console.log("decoded uri:"+ s);
+        $('input[type=search]').val(s);
+        IndexLib.returnIndex.startSearch(s); //then search again.
     }
 });

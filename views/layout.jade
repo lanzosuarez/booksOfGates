@@ -21,7 +21,7 @@ html
   .tabs.is-centered.is-medium
     ul(style="z-index:0")
         li.is-active
-          a('href'="/") Home
+          a()#homeNav Home
         if u
           li
             a('href'="/new") New
@@ -32,7 +32,7 @@ html
           li
             a('href'="/admin/logout") Logout
             
-  body
+  body#body
   block content
   
   // Footer
@@ -63,5 +63,5 @@ html
   script(type='text/javascript',src='/js/register.js')
   script(type='text/javascript',src='/js/editBook.js')
   script(type='text/javascript',src='/js/getBooks.js')
-  //script(type='text/javascript',src='/js/newBook.js')
+
 
