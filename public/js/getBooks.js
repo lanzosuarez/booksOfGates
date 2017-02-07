@@ -72,10 +72,10 @@ IndexLib.returnIndex = (function(){
         });
 
         $('input[type=search]').keyup(function(e){
-            var val = $(this).val().length;
-            if(val===4){
-                console.log(val);
-            }
+            var flag=true;
+            var val = $(this).val();
+            startSearch(val);
+            
         });
 
         $('#searchForm').on('submit',function(e){
@@ -98,6 +98,7 @@ IndexLib.returnIndex = (function(){
             e.preventDefault();
             console.log("dasdsa");
             returnBookList();
+            window.history.pushState({},null,'/');
         });
 
         $('#newest').click(function(e){
@@ -143,12 +144,13 @@ IndexLib.returnIndex = (function(){
         //         type: 'GET',
         //         url: 'api/v1/Book'
         //     }).done(function(r){
-                window.history.pushState({},null,'/books?keyword='+keyword);
+               
                 //console.log(r);
                 //retrievedBooks=r;
                 retrievedBooks = searchBook(keyword,books,testBook);
                 document.getElementById('count').textContent=retrievedBooks.length+ (retrievedBooks.length>1?' books':' book');
                 insertBooks(retrievedBooks);
+                window.history.pushState({},null,'/books?keyword='+keyword);
             // });
     }
 
