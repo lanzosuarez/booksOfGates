@@ -2,7 +2,7 @@ document.ready=(function(){
 
     if(window.location.pathname==="/books/new"){
         console.log("hello im in new book");
-        var location=document.getElementById('newBody');
+        var location=document.getElementById('bodySection');
         location.insertAdjacentHTML('afterBegin',
         `
             <div class="hero-body content">

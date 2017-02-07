@@ -2,99 +2,100 @@ extends layout
 
 block content
 	.section
-		.columns
-			.column.is-two-thirds.center
-				.content
-					h4(align="justify")
-						| "Never before have I felt so empowered to learn as I do today. When I was young, there were few options to learn on my own. My parents had a set of World Book Encyclopedias, which I read through in alphabetical order. But there were no online courses, video lectures, or podcasts to 
-						| introduce me to new ideas and thinkers as we have today. Still, reading books is my favorite way to learn about a new topic. I’ve been reading about a book a week on average since I was a kid. Even when my schedule is out of control, I carve out a lot of time for reading. If you’re 
-						| looking for a book to enjoy over the holidays, here are some of my favorites from this year. They cover an eclectic mix of topics—from tennis to tennis shoes, genomics to great leadership. They’re all very well written, and they all dropped me down a rabbit hole of unexpected 
-						| insights and pleasures."
-	section.hero
-		.hero-body
-			p.title.is-2(align="center") Favorite Books
-			.column.is-one-quarter.center
-				.content
-					h4(align="center")
-						| "Read and find ways to deliver the knowledge people need to live healthier lives and climb out of poverty."
+		#bodySection
+		//- 	.columns
+		//- 		.column.is-two-thirds.center
+		//- 			.content
+		//- 				h4(align="justify")
+		//- 					| "Never before have I felt so empowered to learn as I do today. When I was young, there were few options to learn on my own. My parents had a set of World Book Encyclopedias, which I read through in alphabetical order. But there were no online courses, video lectures, or podcasts to 
+		//- 					| introduce me to new ideas and thinkers as we have today. Still, reading books is my favorite way to learn about a new topic. I’ve been reading about a book a week on average since I was a kid. Even when my schedule is out of control, I carve out a lot of time for reading. If you’re 
+		//- 					| looking for a book to enjoy over the holidays, here are some of my favorites from this year. They cover an eclectic mix of topics—from tennis to tennis shoes, genomics to great leadership. They’re all very well written, and they all dropped me down a rabbit hole of unexpected 
+		//- 					| insights and pleasures."
+		//- section.hero
+		//- 	.hero-body
+		//- 		p.title.is-2(align="center") Favorite Books
+		//- 		.column.is-one-quarter.center
+		//- 			.content
+		//- 				h4(align="center")
+		//- 					| "Read and find ways to deliver the knowledge people need to live healthier lives and climb out of poverty."
 
-			.columns
-				.column.is-one-third.center
-					.nav-wrapper
-						form
-							.input-field
-								input#search(type='search', required='')
-								|           
-								label.label-icon(for='search')
-									i.fa.fa-search.fsearch
-								|           
-								i.material-icons.fsub Search
+		//- 		.columns
+		//- 			.column.is-one-third.center
+		//- 				.nav-wrapper
+		//- 					form
+		//- 						.input-field
+		//- 							input#search(type='search', required='')
+		//- 							|           
+		//- 							label.label-icon(for='search')
+		//- 								i.fa.fa-search.fsearch
+		//- 							|           
+		//- 							i.material-icons.fsub Search
+						
+		//- 		.spacer
+		//- 			section.hero
+		//- 				.hero-body
+		//- 					.container
 					
-			.spacer
-				section.hero
-					.hero-body
-						.container
-				
 
-			.columns
-				.column.is-two-thirds.center
-					.column#sortDate
-						.is-left
-							span.title.is-4.has-text-muted 123 books
-							|           
-							span.title.is-3.has-text-muted &nbsp;|&nbsp;
-							|  
-							a.button.is-primary.new-btn New
-						.ul.rightUl
-							li.link
-								a(href="")
-									span.icon
-										i.fa.fa-list
-									|  
-									span All
-							|           
-							li.link
-								a(href="")
-									span.icon
-										i.fa.fa-heart
-									|  
-									span Newest
-							|           
-							li.link
-								a(href="")
-									span.icon
-										i.fa.fa-th
-									|  
-									span Oldest
-							| 
-					hr.hr
-			.spacer
-			.component
-				ul.align#bookList
-			.columns
-				.column.is-one-third.center
-					ul.pagination
-						li.waves-effect.leftie
-							a(href='#!')
-							i.fa.fa-chevron-left.leftie
-						|     
-						li.active
-							a(href='#!') 1
-						|     
-						li.waves-effect
-							a(href='#!') 2
-						|     
-						li.waves-effect
-							a(href='#!') 3
-						|     
-						li.waves-effect
-							a(href='#!') 4
-						|     
-						li.waves-effect
-							a(href='#!') 5
-						|     
-						li.waves-effect
-							a(href='#!')
-							i.fa.fa-chevron-right 
+		//- 		.columns
+		//- 			.column.is-two-thirds.center
+		//- 				.column#sortDate
+		//- 					.is-left
+		//- 						span.title.is-4.has-text-muted 123 books
+		//- 						|           
+		//- 						span.title.is-3.has-text-muted &nbsp;|&nbsp;
+		//- 						|  
+		//- 						a.button.is-primary.new-btn New
+		//- 					.ul.rightUl
+		//- 						li.link
+		//- 							a(href="")
+		//- 								span.icon
+		//- 									i.fa.fa-list
+		//- 								|  
+		//- 								span All
+		//- 						|           
+		//- 						li.link
+		//- 							a(href="")
+		//- 								span.icon
+		//- 									i.fa.fa-heart
+		//- 								|  
+		//- 								span Newest
+		//- 						|           
+		//- 						li.link
+		//- 							a(href="")
+		//- 								span.icon
+		//- 									i.fa.fa-th
+		//- 								|  
+		//- 								span Oldest
+		//- 						| 
+		//- 				hr.hr
+		//- 		.spacer
+		//- 		.component
+		//- 			ul.align#bookList
+			//- .columns
+			//- 	.column.is-one-third.center
+			//- 		ul.pagination
+			//- 			li.waves-effect.leftie
+			//- 				a(href='#!')
+			//- 				i.fa.fa-chevron-left.leftie
+			//- 			|     
+			//- 			li.active
+			//- 				a(href='#!') 1
+			//- 			|     
+			//- 			li.waves-effect
+			//- 				a(href='#!') 2
+			//- 			|     
+			//- 			li.waves-effect
+			//- 				a(href='#!') 3
+			//- 			|     
+			//- 			li.waves-effect
+			//- 				a(href='#!') 4
+			//- 			|     
+			//- 			li.waves-effect
+			//- 				a(href='#!') 5
+			//- 			|     
+			//- 			li.waves-effect
+			//- 				a(href='#!')
+			//- 				i.fa.fa-chevron-right 
 
 

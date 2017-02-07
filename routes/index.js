@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+
 router.route('/search')
     .get(function(req,res){
         res.render('search')
