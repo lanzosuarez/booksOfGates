@@ -11,7 +11,7 @@ var editLib = editLib || {};
         //favYear: book.published.match(/(\d{4})/)[0],
         //month: monthNames[book.createDate.getMonth()],
 
-        if(urlRegex.test(window.location.pathname)){
+        if(urlRegex.test(window.location.pathname)||true){
             
             function getUserPart(book, user){
                 return user?`<div class="column editButton">
