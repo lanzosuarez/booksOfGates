@@ -13,7 +13,7 @@ IndexLib.returnIndex = (function(){
             //GET BOOKS
             console.log("Hello im in index");
             const bodySection = document.getElementById('bodySection');
-            bodySection.insertAdjacentHTML('beforeend','<h3>Retrieving Books....</h3>')
+            bodySection.insertAdjacentHTML('beforeend','<div class="loadme"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>')
             if(books.length===0){
                 //showLoadPage();
                 initialGet(); // INITIALIZE BOOKS ARRAY

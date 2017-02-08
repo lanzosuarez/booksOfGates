@@ -25,7 +25,7 @@ var editLib = editLib || {};
             var id = window.location.pathname.match(bookIdRegex)[0].slice(1);
             var user;
             const bodySection = document.getElementById('bodySection');
-            bodySection.insertAdjacentHTML('beforeend','<h3>Retrieving Book....</h3>');
+            bodySection.insertAdjacentHTML('beforeend','<div class="loadme"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>');
             $.ajax({
                 type: 'GET',
                 url: '/admin/user'
