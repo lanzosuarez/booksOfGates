@@ -13,7 +13,7 @@ IndexLib.returnIndex = (function(){
             //GET BOOKS
             console.log("Hello im in index");
             if(books.length===0){
-                showLoadPage();
+                //showLoadPage();
                 initialGet(); // INITIALIZE BOOKS ARRAY
             }else{
                 retrievedBooks=[]; // EVERTIME YOU HIT THE HOME PAGE SET EMPTY THE RETRIEVE BOOKS
@@ -36,8 +36,8 @@ IndexLib.returnIndex = (function(){
             insertUpperPart(); //INSERT UPPER PART
             insertBooks(books); //INSERT BOOKS
             listener(); //ASSIGN LISTENERS
-             $('#loaderBody').fakeLoader({bgColor:"#ffff00",show:false});
-             $("#loaderBody").remove();
+            $('#loaderBody').fakeLoader({bgColor:"#ffff00",show:false});
+            $("#loaderBody").remove();
         });
     }
 
@@ -204,6 +204,11 @@ IndexLib.returnIndex = (function(){
         return regex.test(pathname)?true:false;
     }
 
+    function testIfEdit(pathname){
+        var regex = /\/books\/edit\/\d+\w+/;
+        return regex.test(pathname)?true:false;
+    }
+
     function returnOptions(){
         var spinnerOpts;
         return spinnerOpts = {
@@ -217,7 +222,8 @@ IndexLib.returnIndex = (function(){
         testIfSearch:testIfSearch,
         returnOptions:returnOptions,
         showLoadPage:showLoadPage,
-        insertUpperPart: insertUpperPart
+        insertUpperPart:insertUpperPart,
+        testIfEdit:testIfEdit
     }
 }());
 
@@ -229,6 +235,15 @@ document.getElementById('homeNav').addEventListener('click',function(e){
         console.log("youre on homepage")
         e.preventDefault();
         return;
+    }
+    if(window.location.pathname==='/new'){
+        IndexLib.returnIndex.showLoadPage();
+        $('#newBook').attr('id', 'bodySection')
+    }
+
+    if(IndexLib.returnIndex.testIfEdit(window.location.pathname)){
+        IndexLib.returnIndex.showLoadPage();
+        $('#newBook').attr('id', 'bodySection')
     }
     window.history.pushState({},null,'/');
     IndexLib.returnIndex.returnBookList();

@@ -11,8 +11,8 @@ var editLib = editLib || {};
         //favYear: book.published.match(/(\d{4})/)[0],
         //month: monthNames[book.createDate.getMonth()],
 
-        if(urlRegex.test(window.location.pathname|| true)){
-
+        if(urlRegex.test(window.location.pathname)){
+            
             function getUserPart(book, user){
                 return user?`<div class="column editButton">
                                         <a id="edit" href="/books/edit/${book._id}" class="button is-primary">Edit Book</a>
@@ -89,4 +89,6 @@ window.addEventListener('popstate', function(e){
         IndexLib.returnIndex.startSearch(s); //then search again.
     }
 });
+
+
 
