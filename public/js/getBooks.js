@@ -9,7 +9,7 @@ IndexLib.returnIndex = (function(){
         inFlag=false;
     
     function returnBookList(){
-        if(window.location.pathname==='/'){
+        if(window.location.pathname==='/'||true){
             //GET BOOKS
             console.log("Hello im in index");
             if(books.length===0){
