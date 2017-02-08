@@ -42,7 +42,7 @@ IndexLib.returnIndex = (function(){
     }
 
     function showLoadPage(){
-        document.getElementById('body').insertAdjacentHTML('afterbegin', '<div id="loaderBody"></div>' );
+        document.getElementById('gates').insertAdjacentHTML('afterbegin', '<div id="loaderBody"></div>' );
             $('#loaderBody').fakeLoader({
                     show:true,
                     timeToHide:3000, //Time in milliseconds for fakeLoader disappear
