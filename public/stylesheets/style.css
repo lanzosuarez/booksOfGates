@@ -1445,12 +1445,11 @@ hr.hr {
 }
 
 .sk-folding-cube {
-  margin: 350px auto;
   width: 100px;
   height: 100px;
   position: fixed;
   top: 50%;
-  left: 48%;
+  left: 50%;
   margin: -100px auto;
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);

@@ -3,13 +3,19 @@ var IndexLib = {};
 IndexLib.returnIndex = (function(){
 
     var books=[],
-        retrievedBook=[],
+        retrievedBooks=[],
         count,
         retFlag=false,
         inFlag=false;
     
     function returnBookList(){
-        if(window.location.pathname==='/'){
+        if(window.location.pathname==='/' ||window.location.pathname==='/books'){
+             var path = location.pathname;
+             if(testIfSearch(path+location.search)){
+               window.history.pushState({},null,'/')
+            }
+
+
             //GET BOOKS
             console.log("Hello im in index");
             const bodySection = document.getElementById('bodySection');
@@ -43,8 +49,6 @@ IndexLib.returnIndex = (function(){
         });
     }
 
-
-
     function insertUpperPart(){
         $('#bodySection').html(''); //CLEAR BODY SECTION CONTENT
         
@@ -53,7 +57,7 @@ IndexLib.returnIndex = (function(){
                 `
                 <div class="columns"> <div class="column is-two-thirds center"> <div class="content"> <h4 align="justify"> "Never before have I felt so empowered to learn as I do today. When I was young, there were few options to learn on my own. My parents had a set of World Book Encyclopedias, which I read through in alphabetical order. But there were no online courses, video lectures, or podcasts to introduce me to new ideas and thinkers as we have today. Still, reading books is my favorite way to learn about a new topic. I’ve been reading about a book a week on average since I was a kid. Even when my schedule is out of control, I carve out a lot of time for reading. If you’re looking for a book to enjoy over the holidays, here are some of my favorites from this year. They cover an eclectic mix of topics—from tennis to tennis shoes, genomics to great leadership. They’re all very well written, and they all dropped me down a rabbit hole of unexpected insights and pleasures." </h4> </div></div></div><section class="hero"> <div class="hero-body"> <p align="center" class="title is-2">Favorite Books</p><div class="column is-one-quarter center"> <div class="content"> <h4 align="center">"Read and find ways to deliver the knowledge people need to live healthier lives and climb out of poverty."</h4> </div></div>
                 <div id="afterHeading">
-                <div class="columns"> <div class="column is-one-third center"> <div class="nav-wrapper"> <form id="searchForm"> <div class="input-field"> <input id="search" type="search" required=""/> <label for="search" class="label-icon"><i class="fa fa-search fsearch"></i></label></div></form> </div></div></div><div class="spacer"> <section class="hero"> <div class="hero-body"> <div class="container"></div></div></section> </div><div class="columns"> <div class="column is-two-thirds center"> <div id="sortDate" class="column"> <div class="is-left"><span id="count" class="title is-4 has-text-muted">${count} books</span> <span class="title is-3 has-text-muted">&nbsp;|&nbsp;</span> <a href="/new" class="button is-primary new-btn">New</a></div><div class="ul rightUl"><li id="getAll" class="link"><a href=""><span class="icon"><i class="fa fa-list"></i></span> <span>All</span></a></li><li id="newest" class="link"><a href=""><span class="icon"><i class="fa fa-heart"></i></span> <span>Newest</span></a></li><li id="oldest" class="link"><a href=""><span class="icon"><i class="fa fa-th"></i></span><span>Oldest</span></a></li></div></div>
+                <div class="columns"> <div class="column is-one-third center"> <div class="nav-wrapper"> <form id="searchForm"> <div class="input-field"> <input id="search" type="search" required=""/> <label for="search" class="label-icon"><i class="fa fa-search fsearch"></i></label></div></form> </div></div></div><div class="spacer"> <section class="hero"> <div class="hero-body"> <div class="container"></div></div></section> </div><div class="columns"> <div class="column is-two-thirds center"> <div id="sortDate" class="column"> <div class="is-left"><span id="count" class="title is-4 has-text-muted">${count} books</span> <span class="title is-3 has-text-muted">&nbsp;|&nbsp;</span> <a href="/new" class="button is-primary new-btn">New</a></div><div class="ul rightUl"><li id="getAll" class="link"><a href=""><span class="icon"><i class="fa fa-list"></i></span> <span>All</span></a></li><li id="newest" class="link"><a><span class="icon"><i class="fa fa-heart"></i></span> <span>Newest</span></a></li><li id="oldest" class="link"><a><span class="icon"><i class="fa fa-th"></i></span><span>Oldest</span></a></li></div></div>
                 <hr class="hr"/> </div></div><div class="spacer"></div><div class="component"> <ul id="bookList" class="align"></ul> </div></div></section><div>
                 `
             );
@@ -82,13 +86,13 @@ IndexLib.returnIndex = (function(){
             pushState($(this).attr("id"));
         });
 
-        $('input[type=search]').keyup(function(e){ //SEARCH INPUT
+        $('input[type="search"]').keyup(function(e){ //SEARCH INPUT
             console.log("key");
-            var flag=true;
+            //var flag=true;
             var val = $(this).val();
+            //console.log(val);
             startSearch(val); //SEARCH EVERY KEYSTROKE
-        
-            
+              
         });
 
         $('#searchForm').on('submit',function(e){ //SUBMIT FORM WHEN YOUR PRESS ENTER
@@ -112,7 +116,7 @@ IndexLib.returnIndex = (function(){
             console.log("dasdsa");
             returnBookList();
             window.history.pushState({},null,'/');
-            listener();
+           // listener();
         });
 
         $('#newest').click(function(e){
@@ -131,7 +135,7 @@ IndexLib.returnIndex = (function(){
               
                 insertBooks(retrievedBooks);
             }
-            listener();
+            //listener();
         });
 
         $('#oldest').click(function(e){
@@ -150,26 +154,30 @@ IndexLib.returnIndex = (function(){
                 insertBooks(retrievedBooks);
                 
              }
-             listener();
+            // listener();
         });
 
 
     }
     //START SEARCHING
     function startSearch(keyword){
-        // $.ajax({
-        //         type: 'GET',
-        //         url: 'api/v1/Book'
-        //     }).done(function(r){
-               
-                //console.log(r);
-                //retrievedBooks=r;
-                retrievedBooks = searchBook(keyword,books,testBook);
-                document.getElementById('count').textContent=retrievedBooks.length+ (retrievedBooks.length>1?' books':' book');
-                insertBooks(retrievedBooks);
-                listener();
-                window.history.pushState({},null,'/books?keyword='+keyword);
-            // });
+        console.log("reached");
+        retrievedBooks = searchBook(keyword,books,testBook);
+        console.log(retrievedBooks)
+        document.getElementById('count').textContent=retrievedBooks.length+ (retrievedBooks.length>1?' books':' book');
+        insertBooks(retrievedBooks);
+         $('a.bookButton').click(function(e){
+            console.log($(this).attr("id"));
+            pushState($(this).attr("id"));
+        });
+        window.history.pushState({},null,'/books?keyword='+keyword);
+    }
+
+    
+    function searchBook(keyword,retrievedBooks,fn){
+        console.log('reached')
+        var resultArr = fn(keyword,retrievedBooks);
+        return resultArr;
     }
 
     function testBook(keyword,books){
@@ -192,11 +200,6 @@ IndexLib.returnIndex = (function(){
         editLib.returnEditBook.returnBook();
     }
 
-    function searchBook(keyword,retrievedBooks,fn){
-        console.log('reached')
-        var resultArr = fn(keyword,retrievedBooks);
-        return resultArr;
-    }
 
     function testIfSearch(pathname){
         var regex = /\/books\?keyword=\w+/;
@@ -208,18 +211,11 @@ IndexLib.returnIndex = (function(){
         return regex.test(pathname)?true:false;
     }
 
-    function returnOptions(){
-        var spinnerOpts;
-        return spinnerOpts = {
-            
-        }
-    }
     
     return{
         returnBookList:returnBookList,
         startSearch:startSearch,
         testIfSearch:testIfSearch,
-        returnOptions:returnOptions,
         insertUpperPart:insertUpperPart,
         testIfEdit:testIfEdit
     }
@@ -258,9 +254,3 @@ document.getElementById('homeNav').addEventListener('click',function(e){
     window.history.pushState({},null,'/');
     IndexLib.returnIndex.returnBookList();
 });
-
-paceOptions = {
-  elements: {
-    selectors: ['#bodySection']
-  }
-}
