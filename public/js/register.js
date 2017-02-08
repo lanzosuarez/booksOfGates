@@ -186,12 +186,5 @@ document.ready = (function(){
         })
     });
 
-    function removeLoad(){
-        $('#loaderBody').fakeLoader({bgColor:"#ffff00",show:false});
-        $("#loaderBody").remove();
-    }
-    if(document.getElementById('registerButton')){
-        setTimeout(removeLoad(),2000)
-        }
     }
 }());

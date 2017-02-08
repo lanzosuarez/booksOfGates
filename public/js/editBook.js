@@ -11,7 +11,7 @@ var editLib = editLib || {};
         //favYear: book.published.match(/(\d{4})/)[0],
         //month: monthNames[book.createDate.getMonth()],
 
-        if(urlRegex.test(window.location.pathname)||true){
+        if(urlRegex.test(window.location.pathname)){
             
             function getUserPart(book, user){
                 return user?`<div class="column editButton">
@@ -24,7 +24,8 @@ var editLib = editLib || {};
             console.log(window.location.pathname.match(bookIdRegex)[0].slice(1));
             var id = window.location.pathname.match(bookIdRegex)[0].slice(1);
             var user;
-
+            const bodySection = document.getElementById('bodySection');
+            bodySection.insertAdjacentHTML('beforeend','<h3>Retrieving Book....</h3>');
             $.ajax({
                 type: 'GET',
                 url: '/admin/user'
@@ -76,6 +77,7 @@ window.addEventListener('popstate', function(e){
     console.log(location.pathname);
     var path = location.pathname;
     if(path==="/"){
+        console.log("hello")
         IndexLib.returnIndex.returnBookList();
     }
     if(editLib.returnEditBook.urlRegex.test(path)){

@@ -9,9 +9,11 @@ IndexLib.returnIndex = (function(){
         inFlag=false;
     
     function returnBookList(){
-        if(window.location.pathname==='/'||true){
+        if(window.location.pathname==='/'){
             //GET BOOKS
             console.log("Hello im in index");
+            const bodySection = document.getElementById('bodySection');
+            bodySection.insertAdjacentHTML('beforeend','<h3>Retrieving Books....</h3>')
             if(books.length===0){
                 //showLoadPage();
                 initialGet(); // INITIALIZE BOOKS ARRAY
@@ -36,21 +38,12 @@ IndexLib.returnIndex = (function(){
             insertUpperPart(); //INSERT UPPER PART
             insertBooks(books); //INSERT BOOKS
             listener(); //ASSIGN LISTENERS
-            $('#loaderBody').fakeLoader({bgColor:"#ffff00",show:false});
-            $("#loaderBody").remove();
+            // $('#loaderBody').fakeLoader({bgColor:"#ffff00",show:false});
+            // $("#loaderBody").remove();
         });
     }
 
-    function showLoadPage(){
-        document.getElementById('gates').insertAdjacentHTML('beforebegin', '<div id="loaderBody"></div>' );
-            $('#loaderBody').fakeLoader({
-                    show:true,
-                    timeToHide:3000, //Time in milliseconds for fakeLoader disappear
-                    zIndex:"999",
-                    spinner:"spinner6",
-                    bgColor:"#ffff00",
-                });
-    }
+
 
     function insertUpperPart(){
         $('#bodySection').html(''); //CLEAR BODY SECTION CONTENT
@@ -94,6 +87,7 @@ IndexLib.returnIndex = (function(){
             var flag=true;
             var val = $(this).val();
             startSearch(val); //SEARCH EVERY KEYSTROKE
+        
             
         });
 
@@ -118,6 +112,7 @@ IndexLib.returnIndex = (function(){
             console.log("dasdsa");
             returnBookList();
             window.history.pushState({},null,'/');
+            listener();
         });
 
         $('#newest').click(function(e){
@@ -136,6 +131,7 @@ IndexLib.returnIndex = (function(){
               
                 insertBooks(retrievedBooks);
             }
+            listener();
         });
 
         $('#oldest').click(function(e){
@@ -152,7 +148,9 @@ IndexLib.returnIndex = (function(){
                     retFlag=false;
                 }
                 insertBooks(retrievedBooks);
+                
              }
+             listener();
         });
 
 
@@ -169,6 +167,7 @@ IndexLib.returnIndex = (function(){
                 retrievedBooks = searchBook(keyword,books,testBook);
                 document.getElementById('count').textContent=retrievedBooks.length+ (retrievedBooks.length>1?' books':' book');
                 insertBooks(retrievedBooks);
+                listener();
                 window.history.pushState({},null,'/books?keyword='+keyword);
             // });
     }
@@ -221,7 +220,6 @@ IndexLib.returnIndex = (function(){
         startSearch:startSearch,
         testIfSearch:testIfSearch,
         returnOptions:returnOptions,
-        showLoadPage:showLoadPage,
         insertUpperPart:insertUpperPart,
         testIfEdit:testIfEdit
     }
@@ -237,17 +235,35 @@ document.getElementById('homeNav').addEventListener('click',function(e){
         return;
     }
     if(window.location.pathname==='/new'){
-        IndexLib.returnIndex.showLoadPage();
-        $('#newBook').attr('id', 'bodySection')
+        $('#newBook').attr('id', 'bodySection');
+        $('#bodySection').html('');
+        //const bodySection = document.getElementById('bodySection');
+        //bodySection.insertAdjacentHTML('beforeend','<h3>Retrieving Books....</h3>')
     }
 
     if(IndexLib.returnIndex.testIfEdit(window.location.pathname)){
-        IndexLib.returnIndex.showLoadPage();
-        $('#newBook').attr('id', 'bodySection')
+        $('#newBook').attr('id', 'bodySection');
+        $('#bodySection').html('');
+        //const bodySection = document.getElementById('bodySection');
+        //bodySection.insertAdjacentHTML('beforeend','<h3>Retrieving Books....</h3>')
+        
+    }
+    if(window.location.pathname==='/admin/login'){
+        document.getElementById('bodySection').classList=[];
+        $('#bodySection').html('');
+        //const bodySection = document.getElementById('bodySection');
+        //bodySection.insertAdjacentHTML('beforeend','<h3>Retrieving Books....</h3>')
+        
     }
     window.history.pushState({},null,'/');
     IndexLib.returnIndex.returnBookList();
 });
+
+paceOptions = {
+  elements: {
+    selectors: ['#bodySection']
+  }
+}
 
 
 
