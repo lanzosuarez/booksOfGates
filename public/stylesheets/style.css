@@ -59,6 +59,12 @@ body {
 .is-white{
 	color:white;
 }
+.is-black{
+	color:black;
+}
+.is-height{
+	line-height: 1.4;
+}
 ::before,
 ::after {
 	content: "";
@@ -779,7 +785,7 @@ figcaption p {
 }
 .table {
     background-color: rgba(255, 255, 255, 0);
-    color: white;
+    color: rgb(101, 101, 101);
 }
 .table td, .table th {
     border: none;
@@ -1404,4 +1410,15 @@ hr.hr {
     float: left!important;
 }
 
+
+
 /*-------------End--------------*/
+.hr2{
+border: 0; 
+  height: 1px; 
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+/*------------------------------*/
