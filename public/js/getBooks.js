@@ -185,7 +185,7 @@ IndexLib.returnIndex = (function(){
         var resultArr=[];
         for(var x=0; x<books.length;x++){
             //console.log(books[x].title)
-            if(regex.test(books[x].description)){ //test the title of the book
+            if(regex.test(books[x].description)||regex.test(books[x].title)){ //test the title of the book
                  //console.log('match:'+books[x].title)
                  resultArr.push(books[x]); //push if it has a match
             }else{
