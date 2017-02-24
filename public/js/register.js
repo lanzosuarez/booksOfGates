@@ -29,56 +29,47 @@ document.ready = (function(){
         field.classList.add('valid');
     }
 
-    fname.addEventListener('focus', function(){
-        fname.addEventListener('keyup', function(){
-            console.log(txtTest(fname.value))
-            if(txtTest(fname.value)){
-                fname.classList.add('invalid')
-            }else{
-                addRemove(fname);
-            }
-        });   
-    });
-    
-
-    fname.addEventListener('blur', function(){
-        if(fname.value===""){
-            remove(fname);
+    function testValid(elem){
+        if(txtTest(elem.value)){
+            elem.classList.add('invalid')
         }else{
-            if(txtTest(fname.value)){
-            fname.classList.add('invalid')
-            }else{
-                addRemove(fname);
-            }
+            addRemove(elem);
         }
-    });
+    }
+    
+    var focusKeyup = function(evnt1,evnt2){
+        return function(elem){
+             elem.addEventListener(evnt1,function(){
+                elem.addEventListener(evnt2,function(){
+                    testValid(elem);
+                });
+            }); 
+        }
+    }.bind(this,'focus','keyup')
 
-    lname.addEventListener('focus', function(){
-        lname.addEventListener('keyup', function(){
-           if(lname.value===""){
-                remove(lname);
-           }else{
-                if(txtTest(lname.value)){
-                    lname.classList.add('invalid')
+    var blr = function(evnt,elem){
+        return function(elem){
+            elem.addEventListener(evnt,function(){
+                if(elem.value===""){
+                    remove(elem);
                 }else{
-                   addRemove(lname);
+                    if(txtTest(elem.value)){
+                        elem.classList.add('invalid')
+                    }else{
+                        addRemove(elem);
+                    }
                 }
-           }
-        });   
-    });
-    
-
-    lname.addEventListener('blur', function(){
-        if(lname.value===""){
-            remove(lname);
-        }else{
-            if(txtTest(lname.value)){
-                lname.classList.add('invalid')
-            }else{
-                addRemove(lname);
-            }
+            });
         }
-    });
+    }.bind(this,'blur');
+
+    var listenFocusKeyup = focusKeyup();//setup focus keyup listeners
+    var listenBlur = blr();//setup focus blur listener
+    listenFocusKeyup(fname);//invoke
+    listenFocusKeyup(lname)
+    listenBlur(fname);
+    listenBlur(lname)
+    
 
     email.addEventListener('keyup', function(){
         if(email.value===""){
